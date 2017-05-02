@@ -3,13 +3,9 @@ package com.tourism.my.tourismmanagement.db.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-
 import com.tourism.my.tourismmanagement.db.db.afinal.FinalDb;
-import com.tourism.my.tourismmanagement.db.db.afinal.db.sqlite.SqlInfo;
-import com.tourism.my.tourismmanagement.db.db.model.Me;
 import com.tourism.my.tourismmanagement.db.db.model.User;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class DBManager {
@@ -23,88 +19,10 @@ public class DBManager {
 		});
 	}
 
-	/**
-	 * 保存回复或笔记到数据库tb_note表
-	 * 
-	 * @param context
-	 * @param reply
-	 */
-	/*public static void saveReply(Context context, Reply reply) {
-		FinalDb finalDb = getFinalDB(context);
-		finalDb.save(reply);
-	}*/
-
-	/**
-	 * 查询所有回复或笔记
-	 * 
-	 * @param context
-	 * @param reply
-	 */
-	/*public static List<Reply> getReplyById(Context context, String id) {
-		FinalDb finalDb = getFinalDB(context);
-		return finalDb.findAllByWhere(Reply.class, " id = '" + id + "'");
-	}*/
-
-	/**
-	 * 保存心情
-	 * 
-	 * @param context
-	 * @param feelingMy
-	 */
-	/*public static void saveFeelingMy(Context context, FeelingMy feelingMy) {
-		FinalDb finalDb = getFinalDB(context);
-		finalDb.save(feelingMy);
-	}*/
-
-	/**
-	 * 获取心情
-	 * 
-	 * @param context
-	 */
-	/*public static List<FeelingMy> getFeelingMy(Context context) {
-		FinalDb finalDb = getFinalDB(context);
-		return finalDb.findAll(FeelingMy.class, "time desc");
-	}*/
-
-	/**
-	 * 删除心情
-	 * 
-	 * @param context
-	 */
-	/*public static void delFeelingMy(Context context, FeelingMy feelingMy) {
-		FinalDb finalDb = getFinalDB(context);
-		finalDb.delete(feelingMy);
-	}*/
-
-
-
-	/**
-	 * 保存我的信息
-	 * 
-	 * @param context
-	 * @param me
-	 */
-	public static void saveMe(Context context, Me me) {
-		FinalDb finalDb = getFinalDB(context);
-		// 确保数据库里只有一个用户信息
-		finalDb.deleteAll(Me.class);
-		finalDb.save(me);
-	}
-
-	/**
-	 * 获取我的信息
-	 * 
-	 * @param context
-	 */
-	public static List<Me> getMe(Context context) {
-		FinalDb finalDb = getFinalDB(context);
-		return finalDb.findAll(Me.class);
-	}
-
 
 	/**
 	 * 检查是否可以登录
-	 * 
+	 *
 	 * @param context
 	 * @param account
 	 * @return
@@ -118,7 +36,7 @@ public class DBManager {
 
 	/**
 	 * 检查用户是否注册过账号
-	 * 
+	 *
 	 * @param context
 	 * @param account
 	 * @return
@@ -131,15 +49,14 @@ public class DBManager {
 
 	/**
 	 * 保存用户
-	 * 
+	 *
 	 * @param context
 	 * @param user
 	 */
 	public static void saveUser(Context context, User user) {
 		FinalDb finalDb = getFinalDB(context);
 		if (checkSign(context, user.getAccount())) {
-			// 保存用户
-			finalDb.deleteAll(User.class);
+			finalDb.deleteByWhere(User.class, " account = '" + user.getAccount() + "'");
 		}
 		finalDb.save(user);
 	}
@@ -158,9 +75,8 @@ public class DBManager {
 
 	/**
 	 * 修改密码
-	 * 
+	 *
 	 * @param context
-	 * @param user
 	 */
 	public static void changePwdByAccount(Context context, String account, String newPwd) {
 		FinalDb finalDb = getFinalDB(context);
@@ -177,7 +93,7 @@ public class DBManager {
 
 	/**
 	 * 删除用户
-	 * 
+	 *
 	 * @param context
 	 */
 	public static void delUserByCount(Context context, String account) {
@@ -185,6 +101,7 @@ public class DBManager {
 		finalDb.deleteByWhere(User.class, " account = '" + account + "'");
 	}
 
+    /**
 	public static void updateLearning(Context context, String id, String key) {
 		FinalDb finalDb = getFinalDB(context);
 		String sql = "update tb_learning set " + key + " = '1' where id = '" + id + "'";
@@ -195,8 +112,7 @@ public class DBManager {
 	}
 
 
-	// /**
-	// * 閺屻儴顕楅弻鎰嚋缁鍩嗘稉瀣畱 缁崵绮洪崠鍛邦棅娣囶噣銆� 婵★拷 閹碉拷娴犮儱寮哥�瑰墎绨跨憗鍛畱缁崵绮洪崠锟�
+	//
 	// *
 	// * @param context
 	// */

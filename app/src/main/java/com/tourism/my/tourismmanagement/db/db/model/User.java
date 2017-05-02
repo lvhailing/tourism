@@ -1,7 +1,8 @@
 package com.tourism.my.tourismmanagement.db.db.model;
 
-import com.example.educationalsystem.db.db.afinal.annotation.sqlite.Id;
-import com.example.educationalsystem.db.db.afinal.annotation.sqlite.Table;
+
+import com.tourism.my.tourismmanagement.db.db.afinal.annotation.sqlite.Id;
+import com.tourism.my.tourismmanagement.db.db.afinal.annotation.sqlite.Table;
 
 /**
  * 用户实体类
@@ -13,20 +14,16 @@ public class User {
 
     private String account;    //账号
     private String password;    //密码
-    private String nickName;    //昵称
-    private String question;  //密保问题
-    private String answer;    //密保答案
+    private String role;    //角色 1 游客  2管理员
 
     public User() {
 
     }
 
-    public User(String account, String password,String nickName, String question, String answer) {
+    public User(String account, String password,String role) {
         this.account = account;
         this.password = password;
-        this.nickName = nickName;
-        this.question = question;
-        this.answer = answer;
+        this.role = role;
     }
 
     public int get_id() {
@@ -53,27 +50,11 @@ public class User {
         this.password = password;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getRole() {
+        return role;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setRole(String role) {
+        this.role = role;
     }
 }

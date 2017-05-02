@@ -108,7 +108,7 @@ public class SignActivity extends Activity implements View.OnClickListener {
                 }
 
                 // 保存到数据库
-                DBManager.saveUser(SignActivity.this, new User(zh, pwd, nickName, question, answer));
+                DBManager.saveUser(SignActivity.this, new User(zh, pwd, "role"));
                 ToastUtil.showToast(SignActivity.this, "注册成功");
                 finish();
             default:
