@@ -54,7 +54,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 String pwd = et2.getText().toString().trim();
 
                 if (TextUtils.isEmpty(zh)) {
-                    ToastUtil.showToast(LoginActivity.this, "学号不能为空");
+                    ToastUtil.showToast(LoginActivity.this, "账号不能为空");
                     return;
                 }
 
