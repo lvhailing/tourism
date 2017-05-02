@@ -1,0 +1,12 @@
+.gradle
+.idea
+
+build
+gradle
+androidTest
+test
+
+gradlew
+gradlew.bat
+local.properties
+*.iml
