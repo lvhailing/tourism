@@ -5,7 +5,7 @@ import android.database.Cursor;
 import java.io.Closeable;
 
 /**
- * 关闭各种资源链接
+ * 鍏抽棴鍚勭璧勬簮閾炬帴
  * 
  * @author kaka
  * 

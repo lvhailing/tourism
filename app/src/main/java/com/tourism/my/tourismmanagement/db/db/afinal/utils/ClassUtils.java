@@ -17,14 +17,14 @@ import java.util.List;
 public class ClassUtils {
 
 	/**
-	 * 鏍规嵁�?�炰綋绫�? 鑾峰�? 瀹炰綋绫诲搴旂殑琛ㄥ悕
+	 * 閺嶈宓佺?圭偘缍嬬猾锟? 閼惧嘲绶? 鐎圭偘缍嬬猾璇差嚠鎼存梻娈戠悰銊ユ倳
 	 *
 	 * @return
 	 */
 	public static String getTableName(Class<?> clazz) {
 		Table table = clazz.getAnnotation(Table.class);
 		if (table == null || table.name().trim().length() == 0) {
-			// 褰撴病鏈夋敞瑙ｇ殑鏃跺�欓粯璁ょ敤绫荤殑鍚嶇О浣滀负琛ㄥ悕,骞舵妸鐐癸紙.锛夋浛鎹负涓嬪垝绾�?(_)
+			// 瑜版挻鐥呴張澶嬫暈鐟欙絿娈戦弮璺猴拷娆撶帛鐠併倗鏁ょ猾鑽ゆ畱閸氬秶袨娴ｆ粈璐熺悰銊ユ倳,楠炶埖濡搁悙鐧哥礄.閿涘娴涢幑顫礋娑撳鍨濈痪锟?(_)
 			return clazz.getName().replace('.', '_');
 		}
 		return table.name();
@@ -36,7 +36,7 @@ public class ClassUtils {
 	}
 
 	/**
-	 * 鏍规嵁�?�炰綋绫�? 鑾峰�? 瀹炰綋绫诲搴旂殑琛ㄥ悕
+	 * 閺嶈宓佺?圭偘缍嬬猾锟? 閼惧嘲绶? 鐎圭偘缍嬬猾璇差嚠鎼存梻娈戠悰銊ユ倳
 	 *
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class ClassUtils {
 			Id idAnnotation = null;
 			Field idField = null;
 
-			for (Field field : fields) { // 鑾峰彇ID娉ㄨВ
+			for (Field field : fields) { // 閼惧嘲褰嘔D濞夈劏袙
 				idAnnotation = field.getAnnotation(Id.class);
 				if (idAnnotation != null) {
 					idField = field;
@@ -55,11 +55,11 @@ public class ClassUtils {
 				}
 			}
 
-			if (idAnnotation != null) { // 鏈塈D娉ㄨВ
+			if (idAnnotation != null) { // 閺堝D濞夈劏袙
 				primaryKey = idAnnotation.column();
 				if (primaryKey == null || primaryKey.trim().length() == 0)
 					primaryKey = idField.getName();
-			} else { // 娌℃湁ID娉ㄨВ,榛樿鍘绘壘 _id 鍜� id 涓轰富閿紝浼樺厛�?�绘�? _id
+			} else { // 濞屸剝婀両D濞夈劏袙,姒涙顓婚崢缁樺 _id 閸滐拷 id 娑撹桨瀵岄柨顕嗙礉娴兼ê鍘涚?电粯澹? _id
 				for (Field field : fields) {
 					if ("_id".equals(field.getName()))
 						return "_id";
@@ -77,7 +77,7 @@ public class ClassUtils {
 	}
 
 	/**
-	 * 鏍规嵁�?�炰綋绫�? 鑾峰�? 瀹炰綋绫诲搴旂殑琛ㄥ悕
+	 * 閺嶈宓佺?圭偘缍嬬猾锟? 閼惧嘲绶? 鐎圭偘缍嬬猾璇差嚠鎼存梻娈戠悰銊ユ倳
 	 *
 	 * @return
 	 */
@@ -86,14 +86,14 @@ public class ClassUtils {
 		Field[] fields = clazz.getDeclaredFields();
 		if (fields != null) {
 
-			for (Field field : fields) { // 鑾峰彇ID娉ㄨВ
+			for (Field field : fields) { // 閼惧嘲褰嘔D濞夈劏袙
 				if (field.getAnnotation(Id.class) != null) {
 					primaryKeyField = field;
 					break;
 				}
 			}
 
-			if (primaryKeyField == null) { // 娌℃湁ID娉ㄨВ
+			if (primaryKeyField == null) { // 濞屸剝婀両D濞夈劏袙
 				for (Field field : fields) {
 					if ("_id".equals(field.getName())) {
 						primaryKeyField = field;
@@ -102,7 +102,7 @@ public class ClassUtils {
 				}
 			}
 
-			if (primaryKeyField == null) { // 濡傛灉娌℃湁_id鐨勫瓧娈�?
+			if (primaryKeyField == null) { // 婵″倹鐏夊▽鈩冩箒_id閻ㄥ嫬鐡у▓锟?
 				for (Field field : fields) {
 					if ("id".equals(field.getName())) {
 						primaryKeyField = field;
@@ -118,7 +118,7 @@ public class ClassUtils {
 	}
 
 	/**
-	 * 鏍规嵁�?�炰綋绫�? 鑾峰�? 瀹炰綋绫诲搴旂殑琛ㄥ悕
+	 * 閺嶈宓佺?圭偘缍嬬猾锟? 閼惧嘲绶? 鐎圭偘缍嬬猾璇差嚠鎼存梻娈戠悰銊ユ倳
 	 *
 	 * @return
 	 */
@@ -128,7 +128,7 @@ public class ClassUtils {
 	}
 
 	/**
-	 * 灏嗗璞¤浆鎹负ContentValues
+	 * 鐏忓棗顕挒陇娴嗛幑顫礋ContentValues
 	 *
 	 * @return
 	 */
@@ -139,11 +139,11 @@ public class ClassUtils {
 			Field[] fs = clazz.getDeclaredFields();
 			String primaryKeyFieldName = getPrimaryKeyFieldName(clazz);
 			for (Field f : fs) {
-				// 蹇呴』鏄熀鏈暟鎹被鍨嬪拰娌℃湁鏍囩灛鏃舵�佺殑瀛楁�?
+				// 韫囧懘銆忛弰顖氱唨閺堫剚鏆熼幑顔捐閸ㄥ鎷板▽鈩冩箒閺嶅洨鐏涢弮鑸碉拷浣烘畱鐎涙顔?
 				if (!FieldUtils.isTransient(f)) {
 					if (FieldUtils.isBaseDateType(f)) {
 
-						if (f.getName().equals(primaryKeyFieldName)) // 杩囨护涓婚敭
+						if (f.getName().equals(primaryKeyFieldName)) // 鏉╁洦鎶ゆ稉濠氭暛
 							continue;
 
 						Property property = new Property();
@@ -168,7 +168,7 @@ public class ClassUtils {
 	}
 
 	/**
-	 * 灏嗗璞¤浆鎹负ContentValues
+	 * 鐏忓棗顕挒陇娴嗛幑顫礋ContentValues
 	 *
 	 * @return
 	 */
@@ -181,7 +181,7 @@ public class ClassUtils {
 				if (!FieldUtils.isTransient(f) && FieldUtils.isManyToOne(f)) {
 
 					ManyToOne mto = new ManyToOne();
-					// 濡傛灉绫诲�?�涓篗anyToOneLazyLoader鍒欏彇绗簩涓弬鏁颁綔涓簃anyClass锛堜竴鏂瑰疄浣擄�?
+					// 婵″倹鐏夌猾璇茬?锋稉绡梐nyToOneLazyLoader閸掓瑥褰囩粭顑跨癌娑擃亜寮弫棰佺稊娑撶皟anyClass閿涘牅绔撮弬鐟扮杽娴ｆ搫绱?
 					// 2013-7-26
 					if (f.getType() == ManyToOneLazyLoader.class) {
 						Class<?> pClazz = (Class<?>) ((ParameterizedType) f
@@ -207,7 +207,7 @@ public class ClassUtils {
 	}
 
 	/**
-	 * 灏嗗璞¤浆鎹负ContentValues
+	 * 鐏忓棗顕挒陇娴嗛幑顫礋ContentValues
 	 *
 	 * @return
 	 */
@@ -229,7 +229,7 @@ public class ClassUtils {
 					if (type instanceof ParameterizedType) {
 						ParameterizedType pType = (ParameterizedType) f
 								.getGenericType();
-						// 濡傛灉绫诲�?�鍙傛暟涓�2鍒欒涓烘槸LazyLoader 2013-7-25
+						// 婵″倹鐏夌猾璇茬?烽崣鍌涙殶娑擄拷2閸掓瑨顓绘稉鐑樻ЦLazyLoader 2013-7-25
 						if (pType.getActualTypeArguments().length == 1) {
 							Class<?> pClazz = (Class<?>) pType
 									.getActualTypeArguments()[0];
@@ -245,7 +245,7 @@ public class ClassUtils {
 						throw new DbException("getOneToManyList Exception:"
 								+ f.getName() + "'s type is null");
 					}
-					/* 淇绫诲�?�璧嬪�奸敊璇殑bug锛宖.getClass杩斿洖鐨勬槸Filed */
+					/* 娣囶喗顒滅猾璇茬?风挧瀣拷濂告晩鐠囶垳娈慴ug閿涘畺.getClass鏉╂柨娲栭惃鍕ЦFiled */
 					otm.setDataType(f.getType());
 					otm.setSet(FieldUtils.getFieldSetMethod(clazz, f));
 					otm.setGet(FieldUtils.getFieldGetMethod(clazz, f));

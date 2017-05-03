@@ -1,30 +1,61 @@
 package com.tourism.my.tourismmanagement.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
+import com.tourism.my.tourismmanagement.db.db.model.Me;
+import com.tourism.my.tourismmanagement.widget.CircleImageView;
 
 /**
  * 底部导航---我的
  */
 public class MeFragment extends Fragment implements View.OnClickListener {
-
     private View view;
+    private ImageView iv_back;
+    private TextView tv_add;
+    private CircleImageView civ_photo;
+    private EditText et1;
+    private EditText et2;
+    private ImageView iv_sex;
+    private RelativeLayout rl_sex;
+
+    private TextView tv_man;
+    private TextView tv_female;
+    private ProgressDialog progDialog;
+    private Me me;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_spot, null);
+        view = inflater.inflate(R.layout.fragment_mine, null);
         initView(view);
         return view;
     }
 
 
     private void initView(View view) {
+        iv_back = (ImageView) view.findViewById(R.id.iv_back);
+        tv_add = (TextView) view.findViewById(R.id.tv_add);
+        civ_photo = (CircleImageView) view.findViewById(R.id.civ_photo);
+        et1 = (EditText) view.findViewById(R.id.et1);
+        et2 = (EditText) view.findViewById(R.id.et2);
+        iv_sex = (ImageView) view.findViewById(R.id.iv_sex);
+        tv_man = (TextView) view.findViewById(R.id.tv_man);
+        tv_female = (TextView) view.findViewById(R.id.tv_female);
+        rl_sex = (RelativeLayout) view.findViewById(R.id.rl_sex);
 
+        tv_add.setOnClickListener(this);
+        iv_back.setOnClickListener(this);
+        rl_sex.setOnClickListener(this);
+        civ_photo.setOnClickListener(this);
 
     }
 
