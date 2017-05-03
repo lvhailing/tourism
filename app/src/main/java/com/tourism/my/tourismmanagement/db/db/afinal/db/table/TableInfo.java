@@ -19,7 +19,7 @@ public class TableInfo {
 	public final HashMap<String, OneToMany> oneToManyMap = new HashMap<String, OneToMany>();
 	public final HashMap<String, ManyToOne> manyToOneMap = new HashMap<String, ManyToOne>();
 
-	private boolean checkDatabese;// 鍦ㄥ�?�炰綋杩涜鏁版嵁搴撴搷浣滅殑鏃跺�欐煡璇㈡槸鍚�?凡缁忔湁琛ㄤ簡锛屽彧闇�鏌ヨ涓�閬嶏紝鐢ㄦ鏍囩ず
+	private boolean checkDatabese;// 閸︺劌顕?圭偘缍嬫潻娑滎攽閺佺増宓佹惔鎾存惙娴ｆ粎娈戦弮璺猴拷娆愮叀鐠囥垺妲搁崥锕?鍑＄紒蹇旀箒鐞涖劋绨￠敍灞藉涧闂囷拷閺屻儴顕楁稉锟介柆宥忕礉閻€劍顒濋弽鍥┿仛
 
 	private static final HashMap<String, TableInfo> tableInfoMap = new HashMap<String, TableInfo>();
 

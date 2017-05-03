@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.tourism.my.tourismmanagement.db.db.afinal.FinalDb;
+import com.tourism.my.tourismmanagement.db.db.model.Notes;
+import com.tourism.my.tourismmanagement.db.db.model.NotesDetail;
 import com.tourism.my.tourismmanagement.db.db.model.User;
 
 import java.util.List;
@@ -99,6 +101,58 @@ public class DBManager {
 	public static void delUserByCount(Context context, String account) {
 		FinalDb finalDb = getFinalDB(context);
 		finalDb.deleteByWhere(User.class, " account = '" + account + "'");
+	}
+
+	/**
+	 * 保存游记
+	 *
+	 * @param context
+	 * @param notes
+	 */
+	public static void saveNotes(Context context, Notes notes) {
+		FinalDb finalDb = getFinalDB(context);
+		finalDb.save(notes);
+	}
+
+	/**
+	 * 获取游记
+	 *
+	 * @param context
+	 */
+	public static List<Notes> getNotes(Context context) {
+		FinalDb finalDb = getFinalDB(context);
+		return finalDb.findAll(Notes.class, " myorder desc");
+	}
+
+	/**
+	 * 删除游记
+	 *
+	 * @param context
+	 */
+	public static void delNotes(Context context, Notes notes) {
+		FinalDb finalDb = getFinalDB(context);
+		finalDb.delete(notes);
+	}
+
+	/**
+	 * 保存游记里的上传文件
+	 *
+	 * @param context
+	 * @param notesDetail
+	 */
+	public static void saveNotesDetail(Context context, NotesDetail notesDetail) {
+		FinalDb finalDb = getFinalDB(context);
+		finalDb.save(notesDetail);
+	}
+
+	/**
+	 * 获取游记里的上传文件
+	 *
+	 * @param context
+	 */
+	public static List<NotesDetail> getNotesDetailById(Context context, long id) {
+		FinalDb finalDb = getFinalDB(context);
+		return finalDb.findAllByWhere(NotesDetail.class, " id = '" + id + "' order by myorder desc");
 	}
 
     /**

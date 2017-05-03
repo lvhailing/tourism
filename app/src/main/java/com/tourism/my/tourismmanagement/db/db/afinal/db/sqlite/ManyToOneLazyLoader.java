@@ -8,7 +8,7 @@ public class ManyToOneLazyLoader<M, O> {
 	Class<O> oneClazz;
 	FinalDb db;
 	/**
-	 * 鐢ㄤ�?
+	 * 鐢ㄤ??
 	 */
 	private Object fieldValue;
 

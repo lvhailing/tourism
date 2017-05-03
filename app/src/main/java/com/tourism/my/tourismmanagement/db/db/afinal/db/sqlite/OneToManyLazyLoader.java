@@ -8,10 +8,10 @@ import java.util.List;
 
 /**
  *
- * 涓�瀵瑰寤惰繜鍔犺浇绫�?
+ * 涓?瀵瑰寤惰繜鍔犺浇绫??
  * Created by pwy on 13-7-25.
- * @param <O> 瀹夸富�?�炰綋鐨刢lass
- * @param <M> 澶氭斁�?�炰綋class
+ * @param <O> 瀹夸富???炰綋鐨刢lass
+ * @param <M> 澶氭斁???炰綋class
  */
 public class OneToManyLazyLoader<O,M> {
     O ownerEntity;

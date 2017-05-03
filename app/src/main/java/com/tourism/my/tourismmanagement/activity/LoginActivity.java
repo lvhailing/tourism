@@ -65,7 +65,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 // 检查账号和密码是否正确
                 if (!DBManager.checkLogin(LoginActivity.this, zh, pwd)) {
-                    ToastUtil.showToast(LoginActivity.this, "学号或密码错误");
+                    ToastUtil.showToast(LoginActivity.this, "账号或密码错误");
                     return;
                 }
                 // 登录成功去主界面
@@ -81,7 +81,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 String acount = et1.getText().toString().trim();
 
                 if (TextUtils.isEmpty(acount)) {
-                    ToastUtil.showToast(LoginActivity.this, "请先输入学号");
+                    ToastUtil.showToast(LoginActivity.this, "请先输入帐号");
                     return;
                 }
 
@@ -91,9 +91,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 }
 
                 // 去验证密保问题界面
-//                Intent intent2 = new Intent(LoginActivity.this, VerifySecurityQuestionActivity.class);
-//                intent2.putExtra("acount", acount);
-//                startActivity(intent2);
+                Intent intent2 = new Intent(LoginActivity.this, ForgetPwdActivity.class);
+                intent2.putExtra("acount", acount);
+                startActivity(intent2);
                 break;
             default:
                 break;

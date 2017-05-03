@@ -36,7 +36,7 @@ public class CursorUtils {
 
 					}
 					/**
-					 * 处理OneToMany的lazyLoad形式
+					 * 澶勭悊OneToMany鐨刲azyLoad褰㈠紡
 					 */
 					for (OneToMany oneToManyProp : table.oneToManyMap.values()) {
 						if (oneToManyProp.getDataType() == OneToManyLazyLoader.class) {
@@ -48,7 +48,7 @@ public class CursorUtils {
 					}
 
 					/**
-					 * 处理ManyToOne的lazyLoad形式
+					 * 澶勭悊ManyToOne鐨刲azyLoad褰㈠紡
 					 */
 					for (ManyToOne manyToOneProp : table.manyToOneMap.values()) {
 						if (manyToOneProp.getDataType() == ManyToOneLazyLoader.class) {

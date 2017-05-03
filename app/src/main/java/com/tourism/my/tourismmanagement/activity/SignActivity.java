@@ -3,10 +3,13 @@ package com.tourism.my.tourismmanagement.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
@@ -19,15 +22,14 @@ import com.tourism.my.tourismmanagement.utils.ToastUtil;
  * 注册页面
  */
 public class SignActivity extends Activity implements View.OnClickListener {
-    private EditText et1;
-    private EditText et_nickname;
-    private EditText et2;
-    private EditText et3;
-    private EditText et4;
-    private EditText et5;
+    private EditText et1, et2, et3;
     private Button btn_sign;
     private ImageView iv_back;
     private TextView tv_title;
+    //    private RadioButton rbtn_tourist, rbtn_administrator;
+    private RadioGroup rg;
+    private RadioButton radioButton;
+    private String role = ""; // 游客，管理员
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,20 +41,39 @@ public class SignActivity extends Activity implements View.OnClickListener {
 
     private void bindViews() {
         et1 = (EditText) findViewById(R.id.et1);
-        et_nickname = (EditText) findViewById(R.id.et_nickname);
         et2 = (EditText) findViewById(R.id.et2);
         et3 = (EditText) findViewById(R.id.et3);
-        et4 = (EditText) findViewById(R.id.et4);
-        et5 = (EditText) findViewById(R.id.et5);
+        rg = (RadioGroup) findViewById(R.id.rg);
+//        rbtn_tourist = (RadioButton) findViewById(R.id.rbtn_tourist);
+//        rbtn_administrator = (RadioButton) findViewById(R.id.rbtn_administrator);
         btn_sign = (Button) findViewById(R.id.btn_sign);
         iv_back = (ImageView) findViewById(R.id.iv_back);
         tv_title = (TextView) findViewById(R.id.tv_title);
 
         tv_title.setText("注册");
 
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                selectRadioBtn(group);
+            }
+        });
         btn_sign.setOnClickListener(this);
         iv_back.setOnClickListener(this);
     }
+
+    private void selectRadioBtn(RadioGroup group) {
+        radioButton = (RadioButton) findViewById(group.getCheckedRadioButtonId());
+        String selectText = radioButton.getText().toString();
+        Log.i("dd", "当前选中的是：" + role);
+        //角色 1 游客  2管理员
+        if (selectText.equals("游客")) {
+            role = "1";
+        } else {
+            role = "2";
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -62,25 +83,13 @@ public class SignActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_sign: // 注册
                 String zh = et1.getText().toString().trim();
-                String nickName = et_nickname.getText().toString().trim();
                 String pwd = et2.getText().toString().trim();
                 String pwd2 = et3.getText().toString().trim();
-                String question = et4.getText().toString().trim();
-                String answer = et5.getText().toString().trim();
 
                 if (TextUtils.isEmpty(zh)) {
-                    ToastUtil.showToast(SignActivity.this, "学号不能为空");
+                    ToastUtil.showToast(SignActivity.this, "帐号不能为空");
                     return;
                 }
-                if (TextUtils.isEmpty(nickName)) {
-                    ToastUtil.showToast(SignActivity.this, "昵称不能为空");
-                    return;
-                }
-
-               /* if (!zh.startsWith("14011")) {
-                    ToastUtil.showToast(SignActivity.this, "学号不规范");
-                    return;
-                }*/
 
                 if (TextUtils.isEmpty(pwd) || TextUtils.isEmpty(pwd2)) {
                     ToastUtil.showToast(SignActivity.this, "密码不能为空");
@@ -91,13 +100,9 @@ public class SignActivity extends Activity implements View.OnClickListener {
                     ToastUtil.showToast(SignActivity.this, "两次输入的密码不一致");
                     return;
                 }
-                if (TextUtils.isEmpty(question)) {
-                    ToastUtil.showToast(SignActivity.this, "密保问题不能为空");
-                    return;
-                }
 
-                if (TextUtils.isEmpty(answer)) {
-                    ToastUtil.showToast(SignActivity.this, "密保问题答案不能为空");
+                if (TextUtils.isEmpty(role)) {
+                    ToastUtil.showToast(SignActivity.this, "请选择注册身份");
                     return;
                 }
 
@@ -108,7 +113,7 @@ public class SignActivity extends Activity implements View.OnClickListener {
                 }
 
                 // 保存到数据库
-                DBManager.saveUser(SignActivity.this, new User(zh, pwd, "role"));
+                DBManager.saveUser(SignActivity.this, new User(zh, pwd, role));
                 ToastUtil.showToast(SignActivity.this, "注册成功");
                 finish();
             default:

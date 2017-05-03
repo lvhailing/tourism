@@ -16,7 +16,7 @@ import java.util.List;
 public class SqlBuilder {
 
 	/**
-	 * 鑾峰彇鎻掑叆鐨剆ql璇�?
+	 * 閼惧嘲褰囬幓鎺戝弳閻ㄥ墕ql鐠囶厼褰?
 	 *
 	 * @return
 	 */
@@ -60,15 +60,15 @@ public class SqlBuilder {
 		TableInfo table = TableInfo.get(entity.getClass());
 		Object idvalue = table.getId().getValue(entity);
 
-		if (!(idvalue instanceof Integer)) { // 鐢ㄤ簡闈炶嚜澧為�?,娣诲姞id ,
-												// 閲囩敤鑷�?垮氨涓嶉渶瑕佹坊鍔爄d浜�
+		if (!(idvalue instanceof Integer)) { // 閻€劋绨￠棃鐐跺殰婢х偤鏆?,濞ｈ濮瀒d ,
+												// 闁插洨鏁ら懛顏勵杻闂?鍨皑娑撳秹娓剁憰浣瑰潑閸旂垊d娴滐拷
 			if (idvalue instanceof String && idvalue != null) {
 				KeyValue kv = new KeyValue(table.getId().getColumn(), idvalue);
 				keyValueList.add(kv);
 			}
 		}
 
-		// 娣诲姞灞炴��?
+		// 濞ｈ濮炵仦鐐达拷锟?
 		Collection<Property> propertys = table.propertyMap.values();
 		for (Property property : propertys) {
 			KeyValue kv = property2KeyValue(property, entity);
@@ -76,7 +76,7 @@ public class SqlBuilder {
 				keyValueList.add(kv);
 		}
 
-		// 娣诲姞澶栭敭锛堝�?��?�竴锛�
+		// 濞ｈ濮炴径鏍暛閿涘牆顦跨?甸?涚閿涳拷
 		Collection<ManyToOne> manyToOnes = table.manyToOneMap.values();
 		for (ManyToOne many : manyToOnes) {
 			KeyValue kv = manyToOne2KeyValue(many, entity);
@@ -132,7 +132,7 @@ public class SqlBuilder {
 	}
 
 	/**
-	 * 鏍规嵁鏉′欢鍒犻櫎鏁版嵁 锛屾潯浠朵负绌虹殑鏃跺�欏皢浼氬垹闄ゆ墍鏈夌殑鏁版嵁
+	 * 閺嶈宓侀弶鈥叉閸掔娀娅庨弫鐗堝祦 閿涘本娼禒鏈佃礋缁岃櫣娈戦弮璺猴拷娆忕殺娴兼艾鍨归梽銈嗗閺堝娈戦弫鐗堝祦
 	 *
 	 * @param clazz
 	 * @param strWhere
@@ -208,13 +208,13 @@ public class SqlBuilder {
 		TableInfo table = TableInfo.get(entity.getClass());
 		Object idvalue = table.getId().getValue(entity);
 
-		if (null == idvalue) {// 涓婚敭鍊间笉鑳戒负null锛屽惁鍒欎笉鑳芥洿鏂�?
+		if (null == idvalue) {// 娑撳鏁崐闂寸瑝閼虫垝璐焠ull閿涘苯鎯侀崚娆庣瑝閼宠姤娲块弬锟?
 			throw new DbException("this entity[" + entity.getClass()
 					+ "]'s id value is null");
 		}
 
 		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
-		// 娣诲姞灞炴��?
+		// 濞ｈ濮炵仦鐐达拷锟?
 		Collection<Property> propertys = table.propertyMap.values();
 		for (Property property : propertys) {
 			KeyValue kv = property2KeyValue(property, entity);
@@ -222,7 +222,7 @@ public class SqlBuilder {
 				keyValueList.add(kv);
 		}
 
-		// 娣诲姞澶栭敭锛堝�?��?�竴锛�
+		// 濞ｈ濮炴径鏍暛閿涘牆顦跨?甸?涚閿涳拷
 		Collection<ManyToOne> manyToOnes = table.manyToOneMap.values();
 		for (ManyToOne many : manyToOnes) {
 			KeyValue kv = manyToOne2KeyValue(many, entity);
@@ -254,7 +254,7 @@ public class SqlBuilder {
 
 		List<KeyValue> keyValueList = new ArrayList<KeyValue>();
 
-		// 娣诲姞灞炴��?
+		// 濞ｈ濮炵仦鐐达拷锟?
 		Collection<Property> propertys = table.propertyMap.values();
 		for (Property property : propertys) {
 			KeyValue kv = property2KeyValue(property, entity);
@@ -262,7 +262,7 @@ public class SqlBuilder {
 				keyValueList.add(kv);
 		}
 
-		// 娣诲姞澶栭敭锛堝�?��?�竴锛�
+		// 濞ｈ濮炴径鏍暛閿涘牆顦跨?甸?涚閿涳拷
 		Collection<ManyToOne> manyToOnes = table.manyToOneMap.values();
 		for (ManyToOne many : manyToOnes) {
 			KeyValue kv = manyToOne2KeyValue(many, entity);

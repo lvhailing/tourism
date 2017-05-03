@@ -78,7 +78,7 @@ public class FinalDb {
 	 *
 	 * @param context
 	 * @param isDebug
-	 *            鏄惁鏄痙ebug妯�?�紡锛坉ebug妯�?�紡杩涜鏁版嵁搴撴搷浣滅殑鏃跺�欏皢浼氭墦鍗皊ql璇彞锛�?
+	 *            鏄惁鏄痙ebug妯???紡锛坉ebug妯???紡杩涜鏁版嵁搴撴搷浣滅殑鏃跺?欏皢浼氭墦鍗皊ql璇彞锛??
 	 */
 	public static FinalDb create(Context context, boolean isDebug) {
 		DaoConfig config = new DaoConfig();
@@ -93,7 +93,7 @@ public class FinalDb {
 	 *
 	 * @param context
 	 * @param dbName
-	 *            鏁版嵁搴撳悕绉�
+	 *            鏁版嵁搴撳悕绉?
 	 */
 	public static FinalDb create(Context context, String dbName) {
 		DaoConfig config = new DaoConfig();
@@ -103,13 +103,13 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鍒涘�? FinalDb
+	 * 鍒涘?? FinalDb
 	 *
 	 * @param context
 	 * @param dbName
-	 *            鏁版嵁搴撳悕绉�
+	 *            鏁版嵁搴撳悕绉?
 	 * @param isDebug
-	 *            鏄惁涓篸ebug妯�?�紡锛坉ebug妯�?�紡杩涜鏁版嵁搴撴搷浣滅殑鏃跺�欏皢浼氭墦鍗皊ql璇彞锛�?
+	 *            鏄惁涓篸ebug妯???紡锛坉ebug妯???紡杩涜鏁版嵁搴撴搷浣滅殑鏃跺?欏皢浼氭墦鍗皊ql璇彞锛??
 	 */
 	public static FinalDb create(Context context, String dbName, boolean isDebug) {
 		DaoConfig config = new DaoConfig();
@@ -124,7 +124,7 @@ public class FinalDb {
 	 *
 	 * @param context
 	 * @param dbName
-	 *            鏁版嵁搴撳悕绉�
+	 *            鏁版嵁搴撳悕绉?
 	 */
 	public static FinalDb create(Context context, String targetDirectory,
 			String dbName) {
@@ -136,13 +136,13 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鍒涘�? FinalDb
+	 * 鍒涘?? FinalDb
 	 *
 	 * @param context
 	 * @param dbName
-	 *            鏁版嵁搴撳悕绉�
+	 *            鏁版嵁搴撳悕绉?
 	 * @param isDebug
-	 *            鏄惁涓篸ebug妯�?�紡锛坉ebug妯�?�紡杩涜鏁版嵁搴撴搷浣滅殑鏃跺�欏皢浼氭墦鍗皊ql璇彞锛�?
+	 *            鏄惁涓篸ebug妯???紡锛坉ebug妯???紡杩涜鏁版嵁搴撴搷浣滅殑鏃跺?欏皢浼氭墦鍗皊ql璇彞锛??
 	 */
 	public static FinalDb create(Context context, String targetDirectory,
 			String dbName, boolean isDebug) {
@@ -155,18 +155,18 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鍒涘�? FinalDb
+	 * 鍒涘?? FinalDb
 	 *
 	 * @param context
-	 *            涓婁笅鏂�?
+	 *            涓婁笅鏂??
 	 * @param dbName
-	 *            鏁版嵁搴撳悕瀛�
+	 *            鏁版嵁搴撳悕瀛?
 	 * @param isDebug
-	 *            鏄惁鏄皟璇曟ā寮忥細璋冭瘯妯�?�紡浼歭og鍑簊ql淇℃�?
+	 *            鏄惁鏄皟璇曟ā寮忥細璋冭瘯妯???紡浼歭og鍑簊ql淇℃??
 	 * @param dbVersion
-	 *            鏁版嵁搴撶増鏈俊鎭�?
+	 *            鏁版嵁搴撶増鏈俊鎭??
 	 * @param dbUpdateListener
-	 *            鏁版嵁搴撳崌绾х洃鍚櫒锛氬鏋滅洃鍚�?櫒涓簄ull锛屽崌绾х殑鏃跺�欏皢浼氭竻绌烘墍鎵�鏈夌殑鏁版嵁
+	 *            鏁版嵁搴撳崌绾х洃鍚櫒锛氬鏋滅洃鍚??櫒涓簄ull锛屽崌绾х殑鏃跺?欏皢浼氭竻绌烘墍鎵?鏈夌殑鏁版嵁
 	 * @return
 	 */
 	public static FinalDb create(Context context, String dbName,
@@ -183,15 +183,15 @@ public class FinalDb {
 	/**
 	 *
 	 * @param context
-	 *            涓婁笅鏂�?
+	 *            涓婁笅鏂??
 	 * @param targetDirectory
-	 *            db鏂囦欢璺緞锛屽彲浠ラ厤缃负sdcard鐨勮矾寰�?
+	 *            db鏂囦欢璺緞锛屽彲浠ラ厤缃负sdcard鐨勮矾寰??
 	 * @param dbName
-	 *            鏁版嵁搴撳悕瀛�
+	 *            鏁版嵁搴撳悕瀛?
 	 * @param isDebug
-	 *            鏄惁鏄皟璇曟ā寮忥細璋冭瘯妯�?�紡浼歭og鍑簊ql淇℃�?
+	 *            鏄惁鏄皟璇曟ā寮忥細璋冭瘯妯???紡浼歭og鍑簊ql淇℃??
 	 * @param dbVersion
-	 *            鏁版嵁搴撶増鏈俊鎭�?
+	 *            鏁版嵁搴撶増鏈俊鎭??
 	 * @return
 	 */
 	public static FinalDb create(Context context, String targetDirectory,
@@ -218,7 +218,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鑾峰彇鏁版嵁搴�
+	 * 鑾峰彇鏁版嵁搴?
 	 *
 	 * @return
 	 */
@@ -227,7 +227,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 淇濆瓨鏁版嵁搴擄紝閫熷害瑕佹瘮save蹇�
+	 * 淇濆瓨鏁版嵁搴擄紝閫熷害瑕佹瘮save蹇?
 	 *
 	 * @param entity
 	 */
@@ -237,7 +237,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 淇濆瓨鏁版嵁搴擄紝閫熷害瑕佹瘮save蹇�
+	 * 淇濆瓨鏁版嵁搴擄紝閫熷害瑕佹瘮save蹇?
 	 *
 	 * @param entity
 	 */
@@ -248,12 +248,12 @@ public class FinalDb {
 
 	/**
 	 * 淇濆瓨鏁版嵁鍒版暟鎹簱<br />
-	 * <b>娉ㄦ剰锛�?</b><br />
-	 * 淇濆瓨鎴愬姛鍚庯紝entity鐨勪富閿皢琚祴鍊硷紙鎴栨洿鏂帮級涓烘暟鎹簱鐨勪富閿紝 鍙拡�?�硅嚜澧為暱鐨刬d鏈夋�?
+	 * <b>娉ㄦ剰锛??</b><br />
+	 * 淇濆瓨鎴愬姛鍚庯紝entity鐨勪富閿皢琚祴鍊硷紙鎴栨洿鏂帮級涓烘暟鎹簱鐨勪富閿紝 鍙拡???硅嚜澧為暱鐨刬d鏈夋??
 	 *
 	 * @param entity
-	 *            瑕佷繚�?�樼殑鏁版嵁
-	 * @return ture锛� 淇濆瓨鎴愬姛 false:淇濆瓨澶辫触
+	 *            瑕佷繚???樼殑鏁版嵁
+	 * @return ture锛? 淇濆瓨鎴愬姛 false:淇濆瓨澶辫触
 	 */
 	public boolean saveBindId(Object entity) {
 		checkTableExist(entity.getClass());
@@ -273,7 +273,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鎶奓ist<KeyValue>鏁版嵁�?�樺偍鍒癈ontentValues
+	 * 鎶奓ist<KeyValue>鏁版嵁???樺偍鍒癈ontentValues
 	 *
 	 * @param list
 	 * @param cv
@@ -291,7 +291,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏇存柊鏁版嵁 锛堜富閿�?D蹇呴』涓嶈兘涓虹┖锛�?
+	 * 鏇存柊鏁版嵁 锛堜富閿??D蹇呴』涓嶈兘涓虹┖锛??
 	 *
 	 * @param entity
 	 */
@@ -305,7 +305,7 @@ public class FinalDb {
 	 *
 	 * @param entity
 	 * @param strWhere
-	 *            鏉�?�欢涓虹┖鐨勬椂鍊欙紝灏嗕細鏇存柊鎵�鏈夌殑鏁版�?
+	 *            鏉???欢涓虹┖鐨勬椂鍊欙紝灏嗕細鏇存柊鎵?鏈夌殑鏁版??
 	 */
 	public void update(Object entity, String strWhere) {
 		checkTableExist(entity.getClass());
@@ -316,7 +316,7 @@ public class FinalDb {
 	 * 鍒犻櫎鏁版嵁
 	 *
 	 * @param entity
-	 *            entity鐨勪富閿笉鑳戒负绌�?
+	 *            entity鐨勪富閿笉鑳戒负绌??
 	 */
 	public void delete(Object entity) {
 		checkTableExist(entity.getClass());
@@ -327,9 +327,9 @@ public class FinalDb {
 	 * 鏍规嵁涓婚敭鍒犻櫎鏁版嵁
 	 *
 	 * @param clazz
-	 *            瑕佸垹闄ょ殑瀹炰綋绫�?
+	 *            瑕佸垹闄ょ殑瀹炰綋绫??
 	 * @param id
-	 *            涓婚敭鍊�?
+	 *            涓婚敭鍊??
 	 */
 	public void deleteById(Class<?> clazz, Object id) {
 		checkTableExist(clazz);
@@ -341,7 +341,7 @@ public class FinalDb {
 	 *
 	 * @param clazz
 	 * @param strWhere
-	 *            鏉�?�欢涓虹┖鐨勬椂鍊� 灏嗕細鍒犻櫎鎵�鏈夌殑鏁版嵁
+	 *            鏉???欢涓虹┖鐨勬椂鍊? 灏嗕細鍒犻櫎鎵?鏈夌殑鏁版嵁
 	 */
 	public void deleteByWhere(Class<?> clazz, String strWhere) {
 		checkTableExist(clazz);
@@ -351,7 +351,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鍒犻櫎琛ㄧ殑鎵�鏈夋暟鎹�?
+	 * 鍒犻櫎琛ㄧ殑鎵?鏈夋暟鎹??
 	 *
 	 * @param clazz
 	 */
@@ -363,7 +363,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鍒犻櫎鎸囧畾鐨勮�?
+	 * 鍒犻櫎鎸囧畾鐨勮??
 	 *
 	 * @param clazz
 	 */
@@ -376,7 +376,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鍒犻櫎鎵�鏈夋暟鎹�?
+	 * 鍒犻櫎鎵?鏈夋暟鎹??
 	 */
 	public void dropDb(SQLiteDatabase db) {
 		Cursor cursor = db
@@ -412,7 +412,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁涓婚敭鏌ユ壘鏁版嵁锛堥粯璁や笉鏌ヨ澶氬涓�鎴栬�呬竴�?�瑰鐨勫叧鑱旀暟鎹級
+	 * 鏍规嵁涓婚敭鏌ユ壘鏁版嵁锛堥粯璁や笉鏌ヨ澶氬涓?鎴栬?呬竴???瑰鐨勫叧鑱旀暟鎹級
 	 *
 	 * @param id
 	 * @param clazz
@@ -438,7 +438,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁涓婚敭鏌ユ壘锛屽悓鏃舵煡鎵锯�滃瀵�?�竴鈥濈殑鏁版嵁锛堝鏋滄湁澶氫釜鈥滃瀵�?�竴鈥濆睘鎬э紝鍒欐煡鎵炬墍鏈夌殑鈥滃�?��?�竴鈥濆睘鎬э�?
+	 * 鏍规嵁涓婚敭鏌ユ壘锛屽悓鏃舵煡鎵锯?滃瀵???竴鈥濈殑鏁版嵁锛堝鏋滄湁澶氫釜鈥滃瀵???竴鈥濆睘鎬э紝鍒欐煡鎵炬墍鏈夌殑鈥滃??????竴鈥濆睘鎬э??
 	 *
 	 * @param id
 	 * @param clazz
@@ -457,12 +457,12 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁鏉′欢鏌ユ壘锛屽悓鏃舵煡鎵锯�滃瀵�?�竴鈥濈殑鏁版嵁锛堝彧鏌ユ壘findClass涓殑绫荤殑鏁版嵁锛�?
+	 * 鏍规嵁鏉′欢鏌ユ壘锛屽悓鏃舵煡鎵锯?滃瀵???竴鈥濈殑鏁版嵁锛堝彧鏌ユ壘findClass涓殑绫荤殑鏁版嵁锛??
 	 *
 	 * @param id
 	 * @param clazz
 	 * @param findClass
-	 *            瑕佹煡鎵剧殑绫�
+	 *            瑕佹煡鎵剧殑绫?
 	 */
 	public <T> T findWithManyToOneById(Object id, Class<T> clazz,
 			Class<?>... findClass) {
@@ -478,7 +478,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 灏唀ntity涓殑鈥滃瀵�?�竴鈥濈殑鏁版嵁濉厖婊�? 濡傛灉鏄噿鍔犺浇濉厖锛屽垯dbModel鍙傛暟鍙负null
+	 * 灏唀ntity涓殑鈥滃瀵???竴鈥濈殑鏁版嵁濉厖婊?? 濡傛灉鏄噿鍔犺浇濉厖锛屽垯dbModel鍙傛暟鍙负null
 	 *
 	 * @param clazz
 	 * @param entity
@@ -547,7 +547,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁涓婚敭鏌ユ壘锛屽悓鏃舵煡鎵锯��?竴�?�瑰鈥濈殑鏁版嵁锛堝鏋滄湁澶氫釜鈥滀竴�?�瑰鈥濆睘鎬э紝鍒欐煡鎵炬墍鏈夌殑涓��?�瑰鈥濆睘鎬э級
+	 * 鏍规嵁涓婚敭鏌ユ壘锛屽悓鏃舵煡鎵锯???竴???瑰鈥濈殑鏁版嵁锛堝鏋滄湁澶氫釜鈥滀竴???瑰鈥濆睘鎬э紝鍒欐煡鎵炬墍鏈夌殑涓????瑰鈥濆睘鎬э級
 	 *
 	 * @param id
 	 * @param clazz
@@ -566,7 +566,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁涓婚敭鏌ユ壘锛屽悓鏃舵煡鎵锯��?竴�?�瑰鈥濈殑鏁版嵁锛堝彧鏌ユ壘findClass涓殑鈥�?竴�?�瑰鈥濓級
+	 * 鏍规嵁涓婚敭鏌ユ壘锛屽悓鏃舵煡鎵锯???竴???瑰鈥濈殑鏁版嵁锛堝彧鏌ユ壘findClass涓殑鈥??竴???瑰鈥濓級
 	 *
 	 * @param id
 	 * @param clazz
@@ -587,7 +587,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 灏唀ntity涓殑鈥�?竴�?�瑰鈥濈殑鏁版嵁濉厖婊�
+	 * 灏唀ntity涓殑鈥??竴???瑰鈥濈殑鏁版嵁濉厖婊?
 	 *
 	 * @param entity
 	 * @param clazz
@@ -616,7 +616,7 @@ public class FinalDb {
 						List<?> list = findAllByWhere(one.getOneClass(),
 								one.getColumn() + "=" + id);
 						if (list != null) {
-							/* 濡傛灉鏄疧neToManyLazyLoader娉涘瀷锛屽垯鎵ц鐏屽叆鎳掑姞杞芥暟鎹�? */
+							/* 濡傛灉鏄疧neToManyLazyLoader娉涘瀷锛屽垯鎵ц鐏屽叆鎳掑姞杞芥暟鎹?? */
 							if (one.getDataType() == OneToManyLazyLoader.class) {
 								OneToManyLazyLoader oneToManyLazyLoader = one
 										.getValue(entity);
@@ -635,7 +635,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏌ユ壘鎵�鏈夌殑鏁版�?
+	 * 鏌ユ壘鎵?鏈夌殑鏁版??
 	 *
 	 * @param clazz
 	 */
@@ -645,11 +645,11 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏌ユ壘鎵�鏈夋暟鎹�
+	 * 鏌ユ壘鎵?鏈夋暟鎹?
 	 *
 	 * @param clazz
 	 * @param orderBy
-	 *            鎺掑簭鐨勫瓧娈�
+	 *            鎺掑簭鐨勫瓧娈?
 	 */
 	public <T> List<T> findAll(Class<T> clazz, String orderBy) {
 		checkTableExist(clazz);
@@ -658,11 +658,11 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏌ユ壘鎵�鏈夋暟鎹�
+	 * 鏌ユ壘鎵?鏈夋暟鎹?
 	 *
 	 * @param clazz
 	 * @param orderBy
-	 *            鎺掑簭鐨勫瓧娈�
+	 *            鎺掑簭鐨勫瓧娈?
 	 */
 	public <T> List<T> findAll(Class<T> clazz, String orderBy, String limit) {
 		checkTableExist(clazz);
@@ -671,11 +671,11 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁鏉′欢鏌ユ壘鎵�鏈夋暟鎹�
+	 * 鏍规嵁鏉′欢鏌ユ壘鎵?鏈夋暟鎹?
 	 *
 	 * @param clazz
 	 * @param strWhere
-	 *            鏉�?�欢涓虹┖鐨勬椂鍊欐煡鎵炬墍鏈夋暟鎹�?
+	 *            鏉???欢涓虹┖鐨勬椂鍊欐煡鎵炬墍鏈夋暟鎹??
 	 */
 	public <T> List<T> findAllByWhere(Class<T> clazz, String strWhere) {
 		checkTableExist(clazz);
@@ -684,13 +684,13 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁鏉′欢鏌ユ壘鎵�鏈夋暟鎹�
+	 * 鏍规嵁鏉′欢鏌ユ壘鎵?鏈夋暟鎹?
 	 *
 	 * @param clazz
 	 * @param strWhere
-	 *            鏉�?�欢涓虹┖鐨勬椂鍊欐煡鎵炬墍鏈夋暟鎹�?
+	 *            鏉???欢涓虹┖鐨勬椂鍊欐煡鎵炬墍鏈夋暟鎹??
 	 * @param orderBy
-	 *            鎺掑簭�?�楁�?
+	 *            鎺掑簭???楁??
 	 */
 	public <T> List<T> findAllByWhere(Class<T> clazz, String strWhere,
 			String orderBy) {
@@ -701,13 +701,13 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁鏉′欢鏌ユ壘鎵�鏈夋暟鎹�
+	 * 鏍规嵁鏉′欢鏌ユ壘鎵?鏈夋暟鎹?
 	 *
 	 * @param clazz
 	 * @param strWhere
-	 *            鏉�?�欢涓虹┖鐨勬椂鍊欐煡鎵炬墍鏈夋暟鎹�?
+	 *            鏉???欢涓虹┖鐨勬椂鍊欐煡鎵炬墍鏈夋暟鎹??
 	 * @param orderBy
-	 *            鎺掑簭�?�楁�?
+	 *            鎺掑簭???楁??
 	 */
 	public <T> List<T> findAllByWhere(Class<T> clazz, String strWhere,
 			String orderBy, String limit) {
@@ -718,7 +718,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁鏉′欢鏌ユ壘鎵�鏈夋暟鎹�
+	 * 鏍规嵁鏉′欢鏌ユ壘鎵?鏈夋暟鎹?
 	 *
 	 * @param clazz
 	 * @param strSQL
@@ -746,7 +746,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鏍规嵁sql璇彞鏌ユ壘鏁版嵁锛岃繖涓竴鑸敤浜庢暟鎹粺璁�
+	 * 鏍规嵁sql璇彞鏌ユ壘鏁版嵁锛岃繖涓竴鑸敤浜庢暟鎹粺璁?
 	 *
 	 * @param strSQL
 	 */
@@ -825,14 +825,14 @@ public class FinalDb {
 	}
 
 	public static class DaoConfig {
-		private Context mContext = null; // android涓婁笅鏂�?
-		private String mDbName = "afinal.db"; // 鏁版嵁搴撳悕瀛�
-		private int dbVersion = 1; // 鏁版嵁搴撶増鏈�
-		private boolean debug = true; // 鏄惁鏄皟璇曟ā寮忥紙璋冭瘯妯�?�紡
-										// 澧炲垹鏀规煡鐨勬椂鍊欐樉�?篠QL璇彞锛�?
+		private Context mContext = null; // android涓婁笅鏂??
+		private String mDbName = "afinal.db"; // 鏁版嵁搴撳悕瀛?
+		private int dbVersion = 1; // 鏁版嵁搴撶増鏈?
+		private boolean debug = true; // 鏄惁鏄皟璇曟ā寮忥紙璋冭瘯妯???紡
+										// 澧炲垹鏀规煡鐨勬椂鍊欐樉??篠QL璇彞锛??
 		private DbUpdateListener dbUpdateListener;
-		// private boolean saveOnSDCard = false;//鏄惁淇濆瓨鍒癝D鍗�
-		private String targetDirectory;// 鏁版嵁搴撴枃浠跺湪sd鍗�?�腑鐨勭洰褰�?
+		// private boolean saveOnSDCard = false;//鏄惁淇濆瓨鍒癝D鍗?
+		private String targetDirectory;// 鏁版嵁搴撴枃浠跺湪sd鍗???腑鐨勭洰褰??
 
 		public Context getContext() {
 			return mContext;
@@ -892,7 +892,7 @@ public class FinalDb {
 	}
 
 	/**
-	 * 鍦⊿D鍗＄殑鎸囧畾鐩綍涓婂垱寤烘枃浠�?
+	 * 鍦⊿D鍗＄殑鎸囧畾鐩綍涓婂垱寤烘枃浠??
 	 *
 	 * @param sdcardPath
 	 * @param dbfilename
@@ -907,7 +907,7 @@ public class FinalDb {
 					return SQLiteDatabase.openOrCreateDatabase(dbf, null);
 				}
 			} catch (IOException ioex) {
-				throw new DbException("鏁版嵁搴撴枃浠跺垱寤哄け璐�", ioex);
+				throw new DbException("鏁版嵁搴撴枃浠跺垱寤哄け璐?", ioex);
 			}
 		} else {
 			return SQLiteDatabase.openOrCreateDatabase(dbf, null);
@@ -934,7 +934,7 @@ public class FinalDb {
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			if (mDbUpdateListener != null) {
 				mDbUpdateListener.onUpgrade(db, oldVersion, newVersion);
-			} else { // 娓呯┖鎵�鏈夌殑鏁版嵁淇℃伅
+			} else { // 娓呯┖鎵?鏈夌殑鏁版嵁淇℃伅
 				dropDb(db);
 			}
 		}
