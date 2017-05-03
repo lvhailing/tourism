@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 /**
- * Log宸ュ叿锛�?被浼糰ndroid.util.Log銆� tag鑷姩浜х敓锛屾牸寮�:
+ * Log宸ュ叿锛�?被浼糰ndroid.util.Log銆� tag鑷姩浜х敓锛屾牸寮�:
  * customTagPrefix:className.methodName(L:lineNumber),
  * customTagPrefix涓虹┖鏃跺彧杈撳嚭锛歝lassName.methodName(L:lineNumber)銆�
  * <p/>

@@ -7,7 +7,7 @@ import com.tourism.my.tourismmanagement.db.db.DbUtil.DbUpgradeListener;
 
 /**
  * 
- * @author kaka 数据库配�?
+ * @author kaka 数据库配�?
  * 
  */
 public class DbConfig {

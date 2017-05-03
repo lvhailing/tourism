@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
+import com.tourism.my.tourismmanagement.utils.SPUtil;
 import com.tourism.my.tourismmanagement.utils.ToastUtil;
 
 
@@ -72,6 +73,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 Intent intent0 = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent0);
                 finish();
+
+                SPUtil.save(this, "account", zh);
                 break;
             case R.id.tv_sign: // 去注册界面
                 Intent intent1 = new Intent(LoginActivity.this, SignActivity.class);
