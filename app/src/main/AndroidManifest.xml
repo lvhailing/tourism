@@ -56,6 +56,10 @@
             android:name="com.tourism.my.tourismmanagement.activity.SpotsDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"/>
+        <activity
+            android:name="com.tourism.my.tourismmanagement.activity.ForumAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
     </application>
 
 </manifest>

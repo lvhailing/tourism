@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
+import com.tourism.my.tourismmanagement.fragment.ForumFragment;
 import com.tourism.my.tourismmanagement.fragment.MeFragment;
 import com.tourism.my.tourismmanagement.fragment.NotesFragment;
 import com.tourism.my.tourismmanagement.fragment.RouteFragment;
@@ -26,10 +27,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private LinearLayout ll_tab_spot, ll_tab_route, ll_tab_notes, ll_tab_me;
     private FragmentPagerAdapter mAdapter;
     private ArrayList<Fragment> mFragments;
-    private SpotFragment tab_spot;
-    private RouteFragment tab_route;
-    private NotesFragment tab_notes;
-    private MeFragment tab_me;
+    private SpotFragment tab_spot; //景点
+    private RouteFragment tab_route; //路线
+    private NotesFragment tab_notes; // 游记
+    private ForumFragment tab_forum; // 论坛
+    private MeFragment tab_me; // 我的
     private TextView tv_spot,tv_route,tv_notes,tv_me;
     private ImageView iv_spot,iv_route,iv_notes,iv_me;
 
@@ -71,11 +73,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         tab_spot = new SpotFragment();
         tab_route = new RouteFragment();
         tab_notes = new NotesFragment();
+        tab_forum = new ForumFragment();
         tab_me = new MeFragment();
 
         mFragments.add(tab_spot);
         mFragments.add(tab_route);
         mFragments.add(tab_notes);
+        mFragments.add(tab_forum);
         mFragments.add(tab_me);
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -168,8 +172,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
             case R.id.ll_tab_notes: // 游记
                 setSelect(2);
-//                Intent intent = new Intent(this, SubBookingHospitalActivity.class);
-//                startActivity(intent);
                 break;
             case R.id.ll_tab_me: // 我的
                 setSelect(3);

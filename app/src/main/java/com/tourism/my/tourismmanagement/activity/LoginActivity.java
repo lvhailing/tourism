@@ -93,7 +93,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     return;
                 }
 
-                // 去验证密保问题界面
+                // 去重置密码界面
                 Intent intent2 = new Intent(LoginActivity.this, ForgetPwdActivity.class);
                 intent2.putExtra("acount", acount);
                 startActivity(intent2);

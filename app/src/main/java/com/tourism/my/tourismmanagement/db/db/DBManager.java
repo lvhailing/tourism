@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.tourism.my.tourismmanagement.db.db.afinal.FinalDb;
 import com.tourism.my.tourismmanagement.db.db.model.Diary;
+import com.tourism.my.tourismmanagement.db.db.model.Forums;
 import com.tourism.my.tourismmanagement.db.db.model.Notes;
 import com.tourism.my.tourismmanagement.db.db.model.NotesDetail;
 import com.tourism.my.tourismmanagement.db.db.model.User;
@@ -175,6 +176,36 @@ public class DBManager {
         return finalDb.findAll(Diary.class);
     }
 
+    /**
+     * 保存论坛
+     *
+     * @param context
+     * @param forums
+     */
+    public static void saveForums(Context context, Forums forums) {
+        FinalDb finalDb = getFinalDB(context);
+        finalDb.save(forums);
+    }
+
+    /**
+     * 获取论坛
+     *
+     * @param context
+     */
+
+    public static List<Forums> getForums(Context context) {
+        FinalDb finalDb = getFinalDB(context);
+        return finalDb.findAll(Forums.class, " myorder desc");
+    }
+    /**
+     * 删除论坛
+     *
+     * @param context
+     */
+    public static void delForums(Context context, Forums forums) {
+        FinalDb finalDb = getFinalDB(context);
+        finalDb.delete(forums);
+    }
     /**
      public static void updateLearning(Context context, String id, String key) {
      FinalDb finalDb = getFinalDB(context);
