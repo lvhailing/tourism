@@ -25,21 +25,28 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="12dp"
-            android:text="添加"
+            android:text="发布"
             android:textColor="@color/white"
             android:textSize="14sp"/>
     </RelativeLayout>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:layout_height="match_parent" >
 
-        <com.tourism.my.tourismmanagement.widget.MyListView
+        <ListView
             android:id="@+id/lv"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null" />
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:divider="@null"/>
-    </ScrollView>
+            android:layout_centerInParent="true"
+            android:text="暂无论坛信息，快来发布吧"
+            android:textColor="#666"
+            android:textSize="14sp" />
+    </RelativeLayout>
 </LinearLayout>

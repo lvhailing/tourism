@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="暂无游记记，快来添加吧"
+            android:text="暂无游记，快来添加吧"
             android:textColor="#666"
             android:textSize="14sp" />
     </RelativeLayout>

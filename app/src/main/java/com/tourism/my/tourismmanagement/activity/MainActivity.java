@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
     private ViewPager vp;
-    private LinearLayout ll_tab_spot, ll_tab_route, ll_tab_notes, ll_tab_me;
+    private LinearLayout ll_tab_spot, ll_tab_route, ll_tab_notes, ll_tab_forums,ll_tab_me;
     private FragmentPagerAdapter mAdapter;
     private ArrayList<Fragment> mFragments;
     private SpotFragment tab_spot; //景点
@@ -30,8 +30,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private NotesFragment tab_notes; // 游记
     private ForumFragment tab_forum; // 论坛
     private MeFragment tab_me; // 我的
-    private TextView tv_spot,tv_route,tv_notes,tv_me;
-    private ImageView iv_spot,iv_route,iv_notes,iv_me;
+    private TextView tv_spot,tv_route,tv_notes,tv_forums,tv_me;
+    private ImageView iv_spot,iv_route,iv_notes,iv_forums,iv_me;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,16 +53,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         ll_tab_spot = (LinearLayout) findViewById(R.id.ll_tab_spot);
         ll_tab_route = (LinearLayout) findViewById(R.id.ll_tab_route);
         ll_tab_notes = (LinearLayout) findViewById(R.id.ll_tab_notes);
+        ll_tab_forums = (LinearLayout) findViewById(R.id.ll_tab_forums);
         ll_tab_me = (LinearLayout) findViewById(R.id.ll_tab_me);
 
         tv_spot = (TextView) findViewById(R.id.tv_spot);
         tv_route = (TextView) findViewById(R.id.tv_route);
         tv_notes = (TextView) findViewById(R.id.tv_notes);
+        tv_forums = (TextView) findViewById(R.id.tv_forums);
         tv_me = (TextView) findViewById(R.id.tv_me);
 
         iv_spot = (ImageView) findViewById(R.id.iv_spot);
         iv_route = (ImageView) findViewById(R.id.iv_route);
         iv_notes = (ImageView) findViewById(R.id.iv_notes);
+        iv_forums = (ImageView) findViewById(R.id.iv_forums);
         iv_me = (ImageView) findViewById(R.id.iv_me);
 
         iv_spot.setImageResource(R.mipmap.icon_spot_selected);
@@ -91,7 +94,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             }
         };
         vp.setAdapter(mAdapter);
-        vp.setOffscreenPageLimit(4);
+        vp.setOffscreenPageLimit(5);
         vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -117,6 +120,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 tv_spot.setTextColor(Color.parseColor("#04a915"));
                 iv_spot.setImageResource(R.mipmap.icon_spot_selected);
                 iv_route.setImageResource(R.mipmap.icon_route_normal);
+                iv_forums.setImageResource(R.mipmap.icon_forums_normal);
                 iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
                 iv_me.setImageResource(R.mipmap.icon_me_normal);
                 break;
@@ -125,6 +129,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 iv_spot.setImageResource(R.mipmap.icon_spot_normal);
                 iv_route.setImageResource(R.mipmap.icon_route_seleced);
                 iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
+                iv_forums.setImageResource(R.mipmap.icon_forums_normal);
                 iv_me.setImageResource(R.mipmap.icon_me_normal);
                 break;
             case 2:
@@ -132,13 +137,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 iv_spot.setImageResource(R.mipmap.icon_spot_normal);
                 iv_route.setImageResource(R.mipmap.icon_route_normal);
                 iv_notes.setImageResource(R.mipmap.icon_travel_notes_selected);
+                iv_forums.setImageResource(R.mipmap.icon_forums_normal);
                 iv_me.setImageResource(R.mipmap.icon_me_normal);
                 break;
             case 3:
+                tv_forums.setTextColor(Color.parseColor("#04a915"));
+                iv_spot.setImageResource(R.mipmap.icon_spot_normal);
+                iv_route.setImageResource(R.mipmap.icon_route_normal);
+                iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
+                iv_forums.setImageResource(R.mipmap.icon_forums_selected);
+                iv_me.setImageResource(R.mipmap.icon_me_normal);
+                break;
+            case 4:
                 tv_me.setTextColor(Color.parseColor("#04a915"));
                 iv_spot.setImageResource(R.mipmap.icon_spot_normal);
                 iv_route.setImageResource(R.mipmap.icon_route_normal);
                 iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
+                iv_forums.setImageResource(R.mipmap.icon_forums_normal);
                 iv_me.setImageResource(R.mipmap.icon_me_seleced);
                 break;
 
@@ -149,6 +164,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         ll_tab_spot.setOnClickListener(this);
         ll_tab_route.setOnClickListener(this);
         ll_tab_notes.setOnClickListener(this);
+        ll_tab_forums.setOnClickListener(this);
         ll_tab_me.setOnClickListener(this);
     }
 
@@ -156,6 +172,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         tv_spot.setTextColor(Color.parseColor("#999999"));
         tv_route.setTextColor(Color.parseColor("#999999"));
         tv_notes.setTextColor(Color.parseColor("#999999"));
+        tv_forums.setTextColor(Color.parseColor("#999999"));
         tv_me.setTextColor(Color.parseColor("#999999"));
     }
 
@@ -171,8 +188,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.ll_tab_notes: // 游记
                 setSelect(2);
                 break;
-            case R.id.ll_tab_me: // 我的
+            case R.id.ll_tab_forums: // 论坛
                 setSelect(3);
+                break;
+            case R.id.ll_tab_me: // 我的
+                setSelect(4);
                 break;
 
         }

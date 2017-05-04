@@ -14,13 +14,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
-import com.tourism.my.tourismmanagement.activity.NotesAddActivity;
-import com.tourism.my.tourismmanagement.activity.NotesDetailActivity;
+import com.tourism.my.tourismmanagement.activity.ForumsAddActivity;
 import com.tourism.my.tourismmanagement.adapter.ForumsAdapter;
-import com.tourism.my.tourismmanagement.adapter.NotesAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Forums;
-import com.tourism.my.tourismmanagement.db.db.model.Notes;
 import com.tourism.my.tourismmanagement.widget.MyListView;
 
 import java.util.List;
@@ -30,7 +27,7 @@ import java.util.List;
  */
 public class ForumFragment extends Fragment implements View.OnClickListener {
     private View view;
-    private TextView tv_add, tv_no;
+    private TextView tv_add,tv_no;
     private ListView lv;
     private List<Forums> list;
     private ForumsAdapter adapter;
@@ -48,7 +45,7 @@ public class ForumFragment extends Fragment implements View.OnClickListener {
         context = getActivity();
         tv_add = (TextView) view.findViewById(R.id.tv_add);
         tv_no = (TextView) view.findViewById(R.id.tv_no);
-        lv = (MyListView) view.findViewById(R.id.lv);
+        lv = (ListView) view.findViewById(R.id.lv);
 
         tv_add.setOnClickListener(this);
 
@@ -60,7 +57,7 @@ public class ForumFragment extends Fragment implements View.OnClickListener {
                 return true;
             }
         });
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -69,7 +66,7 @@ public class ForumFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra("notes", list.get(arg2));
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override
@@ -99,8 +96,8 @@ public class ForumFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_add: //添加
-               Intent intent = new Intent(context, NotesAddActivity.class);
+            case R.id.tv_add: //发布
+               Intent intent = new Intent(context, ForumsAddActivity.class);
                 startActivity(intent);
                 break;
 

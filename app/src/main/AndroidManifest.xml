@@ -28,10 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!--<activity
+       <!-- <activity
             android:name="com.tourism.my.tourismmanagement.activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar"/>-->activity
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>-->
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.SignActivity"
             android:screenOrientation="portrait"
@@ -61,7 +61,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity
-            android:name="com.tourism.my.tourismmanagement.activity.ForumAddActivity"
+            android:name="com.tourism.my.tourismmanagement.activity.ForumsAddActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"/>
     </application>

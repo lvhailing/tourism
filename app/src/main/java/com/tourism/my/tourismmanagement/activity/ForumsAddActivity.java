@@ -30,8 +30,6 @@ public class ForumsAddActivity extends Activity implements View.OnClickListener 
 	private EditText et_title, et_content;
 	private ProgressDialog progDialog = null;
 	private long id = 0;
-	private NotesDeatilAdapter adapter;
-	private List<NotesDetail> list;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
