@@ -65,15 +65,27 @@ public class DBManager {
     }
 
     public static User getUserByCount(Context context, String account) {
+        User user;
         FinalDb finalDb = getFinalDB(context);
         List<User> userList = finalDb.findAllByWhere(User.class, " account = '" + account + "'");
-        return userList.get(0);
+        if (userList != null && userList.size() > 0) {
+            user = userList.get(0);
+        } else {
+            user = null;
+        }
+        return user;
     }
 
     public static User getUser(Context context) {
+        User user;
         FinalDb finalDb = getFinalDB(context);
         List<User> userList = finalDb.findAll(User.class);
-        return userList.get(0);
+        if (userList != null && userList.size() > 0) {
+             user = userList.get(0);
+        } else {
+            user = null;
+        }
+        return user;
     }
 
     /**
@@ -197,6 +209,7 @@ public class DBManager {
         FinalDb finalDb = getFinalDB(context);
         return finalDb.findAll(Forums.class, " myorder desc");
     }
+
     /**
      * 删除论坛
      *

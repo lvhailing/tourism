@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
+import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.fragment.ForumFragment;
 import com.tourism.my.tourismmanagement.fragment.MeFragment;
 import com.tourism.my.tourismmanagement.fragment.NotesFragment;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
     private ViewPager vp;
-    private LinearLayout ll_tab_spot, ll_tab_route, ll_tab_notes, ll_tab_forums,ll_tab_me;
+    private LinearLayout ll_tab_spot, ll_tab_route, ll_tab_notes, ll_tab_forums, ll_tab_me;
     private FragmentPagerAdapter mAdapter;
     private ArrayList<Fragment> mFragments;
     private SpotFragment tab_spot; //景点
@@ -30,8 +31,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private NotesFragment tab_notes; // 游记
     private ForumFragment tab_forum; // 论坛
     private MeFragment tab_me; // 我的
-    private TextView tv_spot,tv_route,tv_notes,tv_forums,tv_me;
-    private ImageView iv_spot,iv_route,iv_notes,iv_forums,iv_me;
+    private TextView tv_spot, tv_route, tv_notes, tv_forums, tv_me;
+    private ImageView iv_spot, iv_route, iv_notes, iv_forums, iv_me;
+    private String role;
+    private String result;
+    private String zh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     private void initView() {
+        zh = getIntent().getStringExtra("accout");
         vp = (ViewPager) findViewById(R.id.vp);
         ll_tab_spot = (LinearLayout) findViewById(R.id.ll_tab_spot);
         ll_tab_route = (LinearLayout) findViewById(R.id.ll_tab_route);
@@ -79,8 +84,20 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         mFragments.add(tab_spot);
         mFragments.add(tab_route);
-        mFragments.add(tab_notes);
-        mFragments.add(tab_forum);
+        if (DBManager.getUserByCount(this,zh) == null) {
+            return;
+        }
+        role = DBManager.getUserByCount(this,zh).getRole();
+
+        if (role.equals("1")) {
+            result = "游客";
+            ll_tab_notes.setVisibility(View.VISIBLE);
+            mFragments.add(tab_notes);
+        } else {
+            result = "管理员";
+            ll_tab_forums.setVisibility(View.VISIBLE);
+            mFragments.add(tab_forum);
+        }
         mFragments.add(tab_me);
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -94,7 +111,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             }
         };
         vp.setAdapter(mAdapter);
-        vp.setOffscreenPageLimit(5);
+        vp.setOffscreenPageLimit(4);
         vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -117,62 +134,75 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         resetImgs();
         switch (currentItem) {
             case 0:
+                if (result .equals("游客")) {
+                    iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
+                } else {
+                    iv_forums.setImageResource(R.mipmap.icon_forums_normal);
+                }
                 tv_spot.setTextColor(Color.parseColor("#04a915"));
                 iv_spot.setImageResource(R.mipmap.icon_spot_selected);
                 iv_route.setImageResource(R.mipmap.icon_route_normal);
-                iv_forums.setImageResource(R.mipmap.icon_forums_normal);
-                iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
                 iv_me.setImageResource(R.mipmap.icon_me_normal);
                 break;
             case 1:
+                if (result .equals("游客")) {
+                    iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
+                } else {
+                    iv_forums.setImageResource(R.mipmap.icon_forums_normal);
+                }
                 tv_route.setTextColor(Color.parseColor("#04a915"));
                 iv_spot.setImageResource(R.mipmap.icon_spot_normal);
                 iv_route.setImageResource(R.mipmap.icon_route_seleced);
-                iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
-                iv_forums.setImageResource(R.mipmap.icon_forums_normal);
                 iv_me.setImageResource(R.mipmap.icon_me_normal);
                 break;
             case 2:
-                tv_notes.setTextColor(Color.parseColor("#04a915"));
-                iv_spot.setImageResource(R.mipmap.icon_spot_normal);
-                iv_route.setImageResource(R.mipmap.icon_route_normal);
-                iv_notes.setImageResource(R.mipmap.icon_travel_notes_selected);
-                iv_forums.setImageResource(R.mipmap.icon_forums_normal);
-                iv_me.setImageResource(R.mipmap.icon_me_normal);
+                if (result.equals("游客")) {
+                    tv_notes.setTextColor(Color.parseColor("#04a915"));
+                    iv_spot.setImageResource(R.mipmap.icon_spot_normal);
+                    iv_route.setImageResource(R.mipmap.icon_route_normal);
+                    iv_notes.setImageResource(R.mipmap.icon_travel_notes_selected);
+                    iv_me.setImageResource(R.mipmap.icon_me_normal);
+                } else {
+                    tv_forums.setTextColor(Color.parseColor("#04a915"));
+                    iv_spot.setImageResource(R.mipmap.icon_spot_normal);
+                    iv_route.setImageResource(R.mipmap.icon_route_normal);
+                    iv_forums.setImageResource(R.mipmap.icon_forums_selected);
+                    iv_me.setImageResource(R.mipmap.icon_me_normal);
+                }
                 break;
             case 3:
-                tv_forums.setTextColor(Color.parseColor("#04a915"));
-                iv_spot.setImageResource(R.mipmap.icon_spot_normal);
-                iv_route.setImageResource(R.mipmap.icon_route_normal);
-                iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
-                iv_forums.setImageResource(R.mipmap.icon_forums_selected);
-                iv_me.setImageResource(R.mipmap.icon_me_normal);
-                break;
-            case 4:
+                if (result.equals("游客")) {
+                    iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
+                } else {
+                    iv_forums.setImageResource(R.mipmap.icon_forums_normal);
+                }
                 tv_me.setTextColor(Color.parseColor("#04a915"));
                 iv_spot.setImageResource(R.mipmap.icon_spot_normal);
                 iv_route.setImageResource(R.mipmap.icon_route_normal);
-                iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
-                iv_forums.setImageResource(R.mipmap.icon_forums_normal);
                 iv_me.setImageResource(R.mipmap.icon_me_seleced);
                 break;
-
         }
     }
 
     private void initEvent() {
         ll_tab_spot.setOnClickListener(this);
         ll_tab_route.setOnClickListener(this);
-        ll_tab_notes.setOnClickListener(this);
-        ll_tab_forums.setOnClickListener(this);
+        if (result .equals("游客")) {
+            ll_tab_notes.setOnClickListener(this);
+        } else {
+            ll_tab_forums.setOnClickListener(this);
+        }
         ll_tab_me.setOnClickListener(this);
     }
 
     private void resetImgs() {
         tv_spot.setTextColor(Color.parseColor("#999999"));
         tv_route.setTextColor(Color.parseColor("#999999"));
-        tv_notes.setTextColor(Color.parseColor("#999999"));
-        tv_forums.setTextColor(Color.parseColor("#999999"));
+        if (result.equals("游客")) {
+            tv_notes.setTextColor(Color.parseColor("#999999"));
+        } else {
+            tv_forums.setTextColor(Color.parseColor("#999999"));
+        }
         tv_me.setTextColor(Color.parseColor("#999999"));
     }
 
@@ -189,10 +219,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 setSelect(2);
                 break;
             case R.id.ll_tab_forums: // 论坛
-                setSelect(3);
+                setSelect(2);
                 break;
             case R.id.ll_tab_me: // 我的
-                setSelect(4);
+                setSelect(3);
                 break;
 
         }
