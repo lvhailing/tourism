@@ -21,17 +21,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
+        <!--<activity
             android:name="com.tourism.my.tourismmanagement.activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar"/>
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>-->activity
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.SignActivity"
             android:screenOrientation="portrait"
@@ -50,6 +50,10 @@
             android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.DiaryImageDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
+        <activity
+            android:name="com.tourism.my.tourismmanagement.activity.SpotsAddActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity

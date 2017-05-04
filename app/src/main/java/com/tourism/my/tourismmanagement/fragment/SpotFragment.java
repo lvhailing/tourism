@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
+import com.tourism.my.tourismmanagement.activity.SpotsAddActivity;
 import com.tourism.my.tourismmanagement.activity.SpotsDetailActivity;
 import com.tourism.my.tourismmanagement.adapter.DiaryAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
@@ -56,7 +57,6 @@ public class SpotFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
-
     }
 
     public void initData() {
@@ -86,8 +86,8 @@ public class SpotFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_add: // 添加
-//                intent = new Intent(this, DiaryAddActivity.class);
-//                startActivity(intent);
+                intent = new Intent(getActivity(), SpotsAddActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
