@@ -79,15 +79,16 @@ public class DiaryAdapter extends BaseAdapter {
         Bitmap bitmap = BitmapFactory.decodeFile(dataList.get(position).getFilePath(), options);
         holder.iv.setImageBitmap(bitmap);
 
-        holder.tv_num.setText(position + "");
+        holder.tv_num.setText(position + 1 + "");
         if (position == dataList.size() - 1) {
             holder.iv_point2.setVisibility(View.VISIBLE);
+        } else {
+            holder.iv_point2.setVisibility(View.GONE);
         }
 
         holder.iv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // ���ͼƬȥ����ҳ
                 Intent intent = new Intent(context, DiaryImageDetailActivity.class);
                 intent.putExtra("filePath", dataList.get(position).getFilePath());
                 context.startActivity(intent);

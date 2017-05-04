@@ -1,13 +1,11 @@
 package com.tourism.my.tourismmanagement.activity;
 
-import android.app.Activity;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,7 +20,7 @@ import com.tourism.my.tourismmanagement.fragment.SpotFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener  {
+public class MainActivity extends FragmentActivity implements View.OnClickListener {
     private ViewPager vp;
     private LinearLayout ll_tab_spot, ll_tab_route, ll_tab_notes, ll_tab_me;
     private FragmentPagerAdapter mAdapter;
@@ -93,6 +91,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             }
         };
         vp.setAdapter(mAdapter);
+        vp.setOffscreenPageLimit(4);
         vp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -101,8 +100,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
             @Override
             public void onPageSelected(int i) {
-                int currentItem = vp.getCurrentItem();
-                setTab(currentItem);
+                setTab(i);
             }
 
             @Override

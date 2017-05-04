@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:paddingLeft="5dp"
-                    android:text="编号："
+                    android:text="编号:"
                     android:textColor="@color/text_color_grey"
                     android:textSize="16sp"/>
 
@@ -69,7 +69,7 @@
                     android:background="@null"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:hint="请输入编号"
+                    android:hint="请输入景点编号"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
                     android:paddingTop="10dp"
@@ -102,7 +102,7 @@
                     android:background="@null"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:hint="请输入名称"
+                    android:hint="请输入景点名称"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
                     android:paddingTop="10dp"
@@ -135,7 +135,7 @@
                     android:background="@null"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:hint="请输入地址"
+                    android:hint="请输入景点地址"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
                     android:paddingTop="10dp"
@@ -168,7 +168,7 @@
                     android:background="@null"
                     android:enabled="false"
                     android:gravity="center_vertical"
-                    android:hint="请输入简介"
+                    android:hint="请输入景点简介"
                     android:paddingBottom="10dp"
                     android:paddingLeft="5dp"
                     android:paddingTop="10dp"
@@ -186,7 +186,8 @@
                 <ImageView
                     android:id="@+id/iv"
                     android:layout_width="80dp"
-                    android:layout_height="80dp"/>
+                    android:layout_height="80dp"
+                    android:scaleType="fitXY"/>
 
                 <TextView
                     android:id="@+id/tv_send"
@@ -213,12 +214,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#fff"
+            android:background="@color/main"
             android:gravity="center"
             android:paddingBottom="17dp"
             android:paddingTop="17dp"
             android:text="编辑"
-            android:textColor="@color/textcolor"
+            android:textColor="@color/white"
             android:textSize="16sp"/>
 
 
@@ -227,12 +228,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/main"
+            android:background="#fff"
             android:gravity="center"
             android:paddingBottom="17dp"
             android:paddingTop="17dp"
             android:text="删除"
-            android:textColor="@color/white"
+            android:textColor="@color/textcolor"
             android:textSize="16sp"/>
     </LinearLayout>
 </RelativeLayout>
