@@ -6,14 +6,14 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="17"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -31,27 +31,31 @@
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.SignActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.ForgetPwdActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.NotesAddActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.NotesDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity
             android:name="com.tourism.my.tourismmanagement.activity.DiaryImageDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Light.NoTitleBar" />
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
+        <activity
+            android:name="com.tourism.my.tourismmanagement.activity.SpotsDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
     </application>
 
 </manifest>

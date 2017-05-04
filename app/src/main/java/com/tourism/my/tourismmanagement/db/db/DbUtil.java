@@ -18,7 +18,7 @@ import android.text.TextUtils;
 
 /**
  * 
- * @author kaka 鏁版嵁搴撶鐞嗙�?
+ * @author kaka 閺佺増宓佹惔鎾额吀閻炲棛琚?
  *
  */
 public class DbUtil {
@@ -243,7 +243,7 @@ public class DbUtil {
 		return id;
 	}
 
-	// 鏁版嵁搴撹繛鎺ュ叧闂椂鏈猴紝鐢熷懡鍛ㄦ�?
+	// 閺佺増宓佹惔鎾圭箾閹恒儱鍙ч梻顓熸閺堢尨绱濋悽鐔锋嚒閸涖劍婀?
 	public void close() {
 		String dbName = this.daoConfig.getDbName();
 		if (daoMap.containsKey(dbName)) {
@@ -252,8 +252,8 @@ public class DbUtil {
 		}
 	}
 
-	// ----------------------------------------------------鏁版嵁搴撴搷浣�
-	// 寮�濮�----------------------------------------------------//
+	// ----------------------------------------------------閺佺増宓佹惔鎾存惙娴ｏ拷
+	// 瀵拷婵拷----------------------------------------------------//
 	private void debugSql(String sql) {
 		if (debug) {
 			DBlog.d(sql);
@@ -339,7 +339,7 @@ public class DbUtil {
 		// }
 	}
 
-	// 鍒犻�?
+	// 閸掔娀娅?
 	public int delete(String table, String whereClause, String[] whereArgs) {
 		checkConnection();
 
@@ -351,7 +351,7 @@ public class DbUtil {
 
 	}
 
-	// 鎻掑叆鏁版嵁
+	// 閹绘帒鍙嗛弫鐗堝祦
 	public long insert(String table, String nullColumnHack, ContentValues values) {
 		checkConnection();
 
@@ -362,7 +362,7 @@ public class DbUtil {
 		return result;
 	}
 
-	// 鏇存�?
+	// 閺囧瓨鏌?
 	public int update(String table, ContentValues values, String whereClause,
 			String[] whereArgs) {
 		checkConnection();
@@ -375,8 +375,8 @@ public class DbUtil {
 
 	}
 
-	// ----------------------------------------------------鏁版嵁搴撴搷浣�
-	// 缁撴�?----------------------------------------------------//
+	// ----------------------------------------------------閺佺増宓佹惔鎾存惙娴ｏ拷
+	// 缂佹挻娼?----------------------------------------------------//
 
 	// ///////////////////// temp cache
 	// ////////////////////////////////////////////////////////////////

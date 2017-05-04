@@ -26,7 +26,7 @@ public class DiaryActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diary);
+        setContentView(R.layout.fragment_view_spots);
 
         TextView tv_add = (TextView) findViewById(R.id.tv_add);
         tv_no = (TextView) findViewById(R.id.tv_no);
@@ -39,7 +39,7 @@ public class DiaryActivity extends Activity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 // 去详情
-                Intent intent = new Intent(DiaryActivity.this, DiaryDetailActivity.class);
+                Intent intent = new Intent(DiaryActivity.this, SpotsDetailActivity.class);
                 intent.putExtra("diary", list.get(arg2));
                 startActivity(intent);
             }
