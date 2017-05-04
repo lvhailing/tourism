@@ -2,9 +2,6 @@ package com.tourism.my.tourismmanagement.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -17,10 +14,8 @@ import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.adapter.NotesDeatilAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Forums;
-import com.tourism.my.tourismmanagement.db.db.model.Notes;
 import com.tourism.my.tourismmanagement.db.db.model.NotesDetail;
 import com.tourism.my.tourismmanagement.utils.ToastUtil;
-import com.tourism.my.tourismmanagement.widget.MyListView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,7 +24,7 @@ import java.util.List;
 /**
  *  论坛添加
  */
-public class ForumAddActivity extends Activity implements View.OnClickListener {
+public class ForumsAddActivity extends Activity implements View.OnClickListener {
 	private ImageView iv_back;
 	private TextView tv_save;
 	private EditText et_title, et_content;
@@ -65,17 +60,17 @@ public class ForumAddActivity extends Activity implements View.OnClickListener {
 			String title = et_title.getText().toString().trim();
 			String content = et_content.getText().toString().trim();
 			if (TextUtils.isEmpty(title)) {
-				ToastUtil.showToast(ForumAddActivity.this, "请输入标题");
+				ToastUtil.showToast(ForumsAddActivity.this, "请输入标题");
 				return;
 			} else if (TextUtils.isEmpty(content)) {
-				ToastUtil.showToast(ForumAddActivity.this, "请输入内容");
+				ToastUtil.showToast(ForumsAddActivity.this, "请输入内容");
 				return;
 			}
 			showProgressDialog();
 			new Handler().postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					ToastUtil.showToast(ForumAddActivity.this, "保存成功");
+					ToastUtil.showToast(ForumsAddActivity.this, "保存成功");
 					dissmissProgressDialog();
 					finish();
 				}
