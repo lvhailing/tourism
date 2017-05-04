@@ -9,8 +9,8 @@ import java.io.Serializable;
 /**
  * 景点类
  */
-@Table(name = "tb_diary")
-public class Diary implements Serializable {
+@Table(name = "tb_spot")
+public class Spot implements Serializable {
     @Id
     private int _id;
 
@@ -21,10 +21,10 @@ public class Diary implements Serializable {
     private String filePath;    //代表图片
     private String code;    //景点编号
 
-    public Diary() {
+    public Spot() {
     }
 
-    public Diary(String name, String jianjie, String addr, String routeId, String filePath, String code) {
+    public Spot(String name, String jianjie, String addr, String routeId, String filePath, String code) {
         this.name = name;
         this.jianjie = jianjie;
         this.addr = addr;

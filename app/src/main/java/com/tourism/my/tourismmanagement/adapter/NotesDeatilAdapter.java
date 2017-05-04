@@ -69,7 +69,7 @@ public class NotesDeatilAdapter extends BaseAdapter {
 
 		Options options = new Options();
 		options.inJustDecodeBounds = false;
-		options.inSampleSize = 10;
+		options.inSampleSize = 4;
 		Bitmap bitmap = BitmapFactory.decodeFile(dataList.get(position).getFilePath(), options);
 		holder.iv.setImageBitmap(bitmap);
 		return convertView;

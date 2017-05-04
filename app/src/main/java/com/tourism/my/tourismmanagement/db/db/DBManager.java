@@ -4,10 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.tourism.my.tourismmanagement.db.db.afinal.FinalDb;
-import com.tourism.my.tourismmanagement.db.db.model.Diary;
 import com.tourism.my.tourismmanagement.db.db.model.Forums;
 import com.tourism.my.tourismmanagement.db.db.model.Notes;
 import com.tourism.my.tourismmanagement.db.db.model.NotesDetail;
+import com.tourism.my.tourismmanagement.db.db.model.Route;
+import com.tourism.my.tourismmanagement.db.db.model.Spot;
 import com.tourism.my.tourismmanagement.db.db.model.User;
 
 import java.util.List;
@@ -173,19 +174,47 @@ public class DBManager {
      *
      * @param context
      */
-    public static void delDiary(Context context, Diary diary) {
+    public static void delSpot(Context context, Spot spot) {
         FinalDb finalDb = getFinalDB(context);
-        finalDb.delete(diary);
+        finalDb.delete(spot);
     }
 
-    public static void saveDiary(Context context, Diary diary) {
+    public static void saveSpot(Context context, Spot spot) {
         FinalDb finalDb = getFinalDB(context);
-        finalDb.save(diary);
+        finalDb.save(spot);
     }
 
-    public static List<Diary> getDiary(Context context) {
+    public static void saveSpotList(Context context, List<Spot> addList) {
         FinalDb finalDb = getFinalDB(context);
-        return finalDb.findAll(Diary.class);
+        for (Spot item : addList) {
+            finalDb.save(item);
+        }
+    }
+
+    public static List<Spot> getSpotByRouteId(Context context, String routeId) {
+        FinalDb finalDb = getFinalDB(context);
+        return finalDb.findAllByWhere(Spot.class, " routeId = '" + routeId + "'  desc");
+    }
+
+    /**
+     * 保存线路
+     *
+     * @param context
+     * @param route
+     */
+    public static void saveRoute(Context context, Route route) {
+        FinalDb finalDb = getFinalDB(context);
+        finalDb.save(route);
+    }
+
+    /**
+     * 获取所有线路
+     *
+     * @param context
+     */
+    public static List<Route> getRouteList(Context context) {
+        FinalDb finalDb = getFinalDB(context);
+        return finalDb.findAll(Route.class);
     }
 
     /**

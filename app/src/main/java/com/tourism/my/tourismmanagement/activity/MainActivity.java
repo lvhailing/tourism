@@ -62,7 +62,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         ll_tab_me = (LinearLayout) findViewById(R.id.ll_tab_me);
 
         tv_spot = (TextView) findViewById(R.id.tv_spot);
-        tv_route = (TextView) findViewById(R.id.tv_route);
+        tv_route = (TextView) findViewById(R.id.tv_route_lines);
         tv_notes = (TextView) findViewById(R.id.tv_notes);
         tv_forums = (TextView) findViewById(R.id.tv_forums);
         tv_me = (TextView) findViewById(R.id.tv_me);

@@ -15,21 +15,21 @@ import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.activity.DiaryImageDetailActivity;
-import com.tourism.my.tourismmanagement.db.db.model.Diary;
+import com.tourism.my.tourismmanagement.db.db.model.Spot;
 
 import java.util.List;
 
-public class DiaryAdapter extends BaseAdapter {
-    private List<Diary> dataList;
+public class RouteSpotAdapter extends BaseAdapter {
+    private List<Spot> dataList;
     private Context context;
 
-    public DiaryAdapter(Context context, List<Diary> dataList) {
+    public RouteSpotAdapter(Context context, List<Spot> dataList) {
         super();
         this.dataList = dataList;
         this.context = context;
     }
 
-    public void setData(List<Diary> dataList) {
+    public void setData(List<Spot> dataList) {
         this.dataList = dataList;
         notifyDataSetChanged();
     }
@@ -58,7 +58,7 @@ public class DiaryAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_diary_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.activity_route_add_item, parent, false);
             holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.tv_jianjie = (TextView) convertView.findViewById(R.id.tv_jianjie);
             holder.tv_addr = (TextView) convertView.findViewById(R.id.tv_addr);
@@ -75,7 +75,7 @@ public class DiaryAdapter extends BaseAdapter {
 
         Options options = new Options();
         options.inJustDecodeBounds = false;
-        options.inSampleSize = 10;
+        options.inSampleSize = 4;
         Bitmap bitmap = BitmapFactory.decodeFile(dataList.get(position).getFilePath(), options);
         holder.iv.setImageBitmap(bitmap);
 

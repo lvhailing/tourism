@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
-import com.tourism.my.tourismmanagement.db.db.model.Diary;
+import com.tourism.my.tourismmanagement.db.db.model.Spot;
 import com.tourism.my.tourismmanagement.utils.ToastUtil;
 
 /**
@@ -30,7 +30,7 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
     private ImageView iv_back, iv;
     private EditText et_code, et_title, et_addr, et_content;
     private TextView tv_edit, tv_send, tv_del;
-    private Diary diary;
+    private Spot diary;
     private String imgPath;
 
     @Override
@@ -58,7 +58,7 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
 
     private void initLv() {
         //景点编号，景点名称，景点简介，景点地址，代表图片
-        diary = (Diary) getIntent().getSerializableExtra("diary");
+        diary = (Spot) getIntent().getSerializableExtra("diary");
         if (diary == null) {
             ToastUtil.showToast(this, "没有获取到数据");
             return;
@@ -70,7 +70,7 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = false;
-        options.inSampleSize = 10;
+        options.inSampleSize = 4;
         Bitmap bitmap = BitmapFactory.decodeFile(diary.getFilePath(), options);
         iv.setImageBitmap(bitmap);
     }
@@ -169,9 +169,9 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
                     filePath = diary.getFilePath();
                 }
 
-                DBManager.delDiary(this, diary); // 先删除原先的 防止重复
+                DBManager.delSpot(this, diary); // 先删除原先的 防止重复
                 //String name, String jianjie, String addr, String routeId, String filePath, String code
-                DBManager.saveDiary(this, new Diary(title, content, addr, "", filePath, code));
+                DBManager.saveSpot(this, new Spot(title, content, addr, "", filePath, code));
                 break;
         }
     }
@@ -207,7 +207,7 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // 从数据库删除这一项
-                DBManager.delDiary(SpotsDetailActivity.this, diary);
+                DBManager.delSpot(SpotsDetailActivity.this, diary);
                 dialog.dismiss();
                 finish();
             }

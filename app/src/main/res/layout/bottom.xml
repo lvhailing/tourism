@@ -45,7 +45,7 @@
             android:src="@mipmap/icon_route_normal"/>
 
         <TextView
-            android:id="@+id/tv_route"
+            android:id="@+id/tv_route_lines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dip"

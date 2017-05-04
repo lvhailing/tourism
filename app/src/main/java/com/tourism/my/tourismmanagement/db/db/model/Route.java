@@ -14,21 +14,31 @@ public class Route implements Serializable {
     @Id
     private int _id;
 
+    private String routeId;    //路线id
     private String name;    //名称
     private String jianjie;    //简介
-    private String routeId;    //路线id
-    private String filePath;    //相关建议
+    private String filePath;    //路线图片
     private String code;    //路线编号
+    private String routeLines;    //路线编号
 
     public Route() {
     }
 
-    public Route(String name, String jianjie, String routeId, String filePath, String code) {
+    public Route(String routeId, String name, String jianjie, String filePath, String code, String routeLines) {
+        this.routeId = routeId;
         this.name = name;
         this.jianjie = jianjie;
-        this.routeId = routeId;
         this.filePath = filePath;
         this.code = code;
+        this.routeLines = routeLines;
+    }
+
+    public String getRouteLines() {
+        return routeLines;
+    }
+
+    public void setRouteLines(String routeLines) {
+        this.routeLines = routeLines;
     }
 
     public int get_id() {

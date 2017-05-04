@@ -14,9 +14,9 @@ import android.widget.TextView;
 import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.activity.SpotsAddActivity;
 import com.tourism.my.tourismmanagement.activity.SpotsDetailActivity;
-import com.tourism.my.tourismmanagement.adapter.DiaryAdapter;
+import com.tourism.my.tourismmanagement.adapter.SpotAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
-import com.tourism.my.tourismmanagement.db.db.model.Diary;
+import com.tourism.my.tourismmanagement.db.db.model.Spot;
 
 import java.util.List;
 
@@ -28,13 +28,13 @@ public class SpotFragment extends Fragment implements View.OnClickListener {
     private View view;
     private Intent intent;
     private ListView lv;
-    private DiaryAdapter adapter;
+    private SpotAdapter adapter;
     private TextView tv_no;
-    private List<Diary> list;
+    private List<Spot> list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_view_spots, null);
+        view = inflater.inflate(R.layout.fragment_spots, null);
         initView(view);
         return view;
     }
@@ -60,7 +60,8 @@ public class SpotFragment extends Fragment implements View.OnClickListener {
     }
 
     public void initData() {
-        list = DBManager.getDiary(context);
+        //选routeId等于空的，因为非空的属于线路 会重复
+        list = DBManager.getSpotByRouteId(context,"");
         if (list == null || list.size() <= 0) {
             tv_no.setVisibility(View.VISIBLE);
             lv.setVisibility(View.GONE);
@@ -69,7 +70,7 @@ public class SpotFragment extends Fragment implements View.OnClickListener {
         tv_no.setVisibility(View.GONE);
         lv.setVisibility(View.VISIBLE);
         if (adapter == null) {
-            adapter = new DiaryAdapter(context, list);
+            adapter = new SpotAdapter(context, list);
             lv.setAdapter(adapter);
         } else {
             adapter.setData(list);
