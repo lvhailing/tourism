@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
-import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.fragment.ForumFragment;
 import com.tourism.my.tourismmanagement.fragment.MeFragment;
 import com.tourism.my.tourismmanagement.fragment.NotesFragment;
@@ -33,7 +32,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private MeFragment tab_me; // 我的
     private TextView tv_spot, tv_route, tv_notes, tv_forums, tv_me;
     private ImageView iv_spot, iv_route, iv_notes, iv_forums, iv_me;
-    private String role;
     private String result;
     private String zh;
 
@@ -84,10 +82,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         mFragments.add(tab_spot);
         mFragments.add(tab_route);
-        if (DBManager.getUserByCount(this,zh) == null) {
-            return;
-        }
-        role = DBManager.getUserByCount(this,zh).getRole();
+
+        //判断身份 1游客 2管理员
+        String role = "1";
 
         if (role.equals("1")) {
             result = "游客";
@@ -98,6 +95,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             ll_tab_forums.setVisibility(View.VISIBLE);
             mFragments.add(tab_forum);
         }
+        
         mFragments.add(tab_me);
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -134,7 +132,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         resetImgs();
         switch (currentItem) {
             case 0:
-                if (result .equals("游客")) {
+                if (result.equals("游客")) {
                     iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
                 } else {
                     iv_forums.setImageResource(R.mipmap.icon_forums_normal);
@@ -145,7 +143,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 iv_me.setImageResource(R.mipmap.icon_me_normal);
                 break;
             case 1:
-                if (result .equals("游客")) {
+                if (result.equals("游客")) {
                     iv_notes.setImageResource(R.mipmap.icon_travel_notes_normal);
                 } else {
                     iv_forums.setImageResource(R.mipmap.icon_forums_normal);
@@ -187,7 +185,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private void initEvent() {
         ll_tab_spot.setOnClickListener(this);
         ll_tab_route.setOnClickListener(this);
-        if (result .equals("游客")) {
+        if (result.equals("游客")) {
             ll_tab_notes.setOnClickListener(this);
         } else {
             ll_tab_forums.setOnClickListener(this);

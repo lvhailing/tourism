@@ -86,8 +86,8 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
 				tv_save.setText("保存");
 				et_title.setBackground(getResources().getDrawable(R.drawable.et_rect_bg));
 				et_content.setBackground(getResources().getDrawable(R.drawable.et_rect_bg));
-				et_title.setText("");
-				et_content.setText("");
+//				et_title.setText("");
+//				et_content.setText("");
 				et_title.setEnabled(true);
 				et_content.setEnabled(true);
 				return;

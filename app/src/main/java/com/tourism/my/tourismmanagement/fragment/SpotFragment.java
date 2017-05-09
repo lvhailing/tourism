@@ -17,6 +17,7 @@ import com.tourism.my.tourismmanagement.activity.SpotsDetailActivity;
 import com.tourism.my.tourismmanagement.adapter.SpotAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Spot;
+import com.tourism.my.tourismmanagement.utils.SPUtil;
 
 import java.util.List;
 
@@ -45,6 +46,14 @@ public class SpotFragment extends Fragment implements View.OnClickListener {
         tv_no = (TextView) view.findViewById(R.id.tv_no);
         lv = (ListView) view.findViewById(R.id.lv);
 
+
+        //判断身份 1游客 2管理员
+        String role = SPUtil.get(getActivity(), "role");
+
+        if (role.equals("1")) {
+            tv_add.setVisibility(View.GONE);
+        }
+
         tv_add.setOnClickListener(this);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,7 +62,7 @@ public class SpotFragment extends Fragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 // 去详情
                 Intent intent = new Intent(context, SpotsDetailActivity.class);
-                intent.putExtra("diary", list.get(arg2));
+                intent.putExtra("spotDetail", list.get(arg2));
                 startActivity(intent);
             }
         });

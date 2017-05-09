@@ -19,6 +19,7 @@ import com.tourism.my.tourismmanagement.activity.NotesDetailActivity;
 import com.tourism.my.tourismmanagement.adapter.NotesAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Notes;
+import com.tourism.my.tourismmanagement.utils.SPUtil;
 
 import java.util.List;
 
@@ -68,6 +69,15 @@ public class NotesFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
+
+        //判断身份 1游客 2管理员
+        String role = SPUtil.get(getActivity(), "role");
+
+        if (role.equals("2")) {
+            //"管理员";
+            tv_add.setVisibility(View.GONE);
+            tv_no.setText("暂无游客游记");
+        }
     }
 
     @Override

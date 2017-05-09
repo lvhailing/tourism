@@ -6,22 +6,25 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Spot;
+import com.tourism.my.tourismmanagement.utils.PhotoUtils;
+import com.tourism.my.tourismmanagement.utils.SPUtil;
 import com.tourism.my.tourismmanagement.utils.ToastUtil;
+
+import java.util.Map;
 
 /**
  * 景点详情页面
@@ -30,7 +33,7 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
     private ImageView iv_back, iv;
     private EditText et_code, et_title, et_addr, et_content;
     private TextView tv_edit, tv_send, tv_del;
-    private Spot diary;
+    private Spot spotDetail;
     private String imgPath;
 
     @Override
@@ -53,25 +56,40 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
         tv_send.setOnClickListener(this);
         tv_del.setOnClickListener(this);
 
+
+        //判断身份 1游客 2管理员
+        String role = SPUtil.get(this, "role");
+
+        if (role.equals("1")) {
+            LinearLayout ll_btm = (LinearLayout) findViewById(R.id.ll_btm);
+            ll_btm.setVisibility(View.GONE);
+            tv_send.setVisibility(View.GONE);
+        }
+
         initLv();
     }
 
     private void initLv() {
         //景点编号，景点名称，景点简介，景点地址，代表图片
-        diary = (Spot) getIntent().getSerializableExtra("diary");
-        if (diary == null) {
+        spotDetail = (Spot) getIntent().getSerializableExtra("spotDetail");
+        if (spotDetail == null) {
             ToastUtil.showToast(this, "没有获取到数据");
             return;
         }
-        et_code.setText(diary.getCode());
-        et_title.setText(diary.getName());
-        et_addr.setText(diary.getAddr());
-        et_content.setText(diary.getJianjie());
+        if (getIntent().getBooleanExtra("fromRoute", false)) {
+            tv_edit.setVisibility(View.GONE);
+            tv_del.setVisibility(View.GONE);
+        }
+        et_code.setText(spotDetail.getCode());
+        et_title.setText(spotDetail.getName());
+        et_addr.setText(spotDetail.getAddr());
+        et_content.setText(spotDetail.getJianjie());
+        tv_send.setVisibility(View.GONE);
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = false;
-        options.inSampleSize = 4;
-        Bitmap bitmap = BitmapFactory.decodeFile(diary.getFilePath(), options);
+        options.inSampleSize = 6;
+        Bitmap bitmap = BitmapFactory.decodeFile(spotDetail.getFilePath(), options);
         iv.setImageBitmap(bitmap);
     }
 
@@ -79,28 +97,12 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            Uri uri = data.getData();
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            cursor.moveToFirst();
-
-            // imgNo:video:127224
-            // imgPath:video/mp4
-            // imgSize:ScreenRecord_2017-04-12-21-40-54.mp4
-            // imgName:1492004746000
-            //
-            // imgNo:65105
-            // imgPath:/storage/emulated/0/MagazineUnlock/magazine-unlock-05-2.3.524-bigpicture_05_50.jpg
-            // imgSize:497742
-            // imgName:magazine-unlock-05-2.3.524-bigpicture_05_50.jpg
-
-            String imgNo = cursor.getString(0); // 图片编号
-            imgPath = cursor.getString(1); // 图片文件路径
-            String imgSize = cursor.getString(2);
-            String imgName = cursor.getString(3);
+            Map<String, String> map = PhotoUtils.getData(this, data);
+            imgPath = map.get("path");
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = false;
-            options.inSampleSize = 4;
+            options.inSampleSize = 6;
             Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
             iv.setImageBitmap(bitmap);
         }
@@ -116,10 +118,7 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
                 break;
             case R.id.tv_send: // 修改图片
                 // 打开系统文件
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 1);
+                PhotoUtils.startImageActivity(this);
                 break;
             case R.id.tv_del:
                 dialog();
@@ -132,6 +131,11 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
                     et_title.setBackground(getResources().getDrawable(R.drawable.et_rect_bg));
                     et_addr.setBackground(getResources().getDrawable(R.drawable.et_rect_bg));
                     et_content.setBackground(getResources().getDrawable(R.drawable.et_rect_bg));
+                    et_code.setEnabled(true);
+                    et_title.setEnabled(true);
+                    et_addr.setEnabled(true);
+                    et_content.setEnabled(true);
+                    tv_send.setVisibility(View.VISIBLE);
                     return;
                 }
                 String code = et_code.getText().toString().trim();
@@ -166,10 +170,10 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
                 if (!TextUtils.isEmpty(imgPath)) {
                     filePath = imgPath;
                 } else {
-                    filePath = diary.getFilePath();
+                    filePath = spotDetail.getFilePath();
                 }
 
-                DBManager.delSpot(this, diary); // 先删除原先的 防止重复
+                DBManager.delSpot(this, spotDetail); // 先删除原先的 防止重复
                 //String name, String jianjie, String addr, String routeId, String filePath, String code
                 DBManager.saveSpot(this, new Spot(title, content, addr, "", filePath, code));
                 break;
@@ -207,7 +211,7 @@ public class SpotsDetailActivity extends Activity implements View.OnClickListene
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // 从数据库删除这一项
-                DBManager.delSpot(SpotsDetailActivity.this, diary);
+                DBManager.delSpot(SpotsDetailActivity.this, spotDetail);
                 dialog.dismiss();
                 finish();
             }

@@ -4,16 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,7 +19,10 @@ import android.widget.TextView;
 import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Spot;
+import com.tourism.my.tourismmanagement.utils.PhotoUtils;
 import com.tourism.my.tourismmanagement.utils.ToastUtil;
+
+import java.util.Map;
 
 /**
  * 景点添加页面
@@ -73,21 +73,13 @@ public class SpotsAddActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            Uri uri = data.getData();
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
-            cursor.moveToFirst();
 
-            imgPath = cursor.getString(1); // 图片文件路径
-            String imgSize = cursor.getString(2);
-            String imgName = cursor.getString(3);
-
-            Log.i("aaa", "imgPath " + imgPath);
-            Log.i("aaa", "imgSize " + imgSize);
-            Log.i("aaa", "imgName " + imgName);
+            Map<String ,String> map=PhotoUtils.getData(this, data);
+            imgPath = map.get("path");
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = false;
-            options.inSampleSize = 4;
+            options.inSampleSize = 6;
             Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
 
             iv.setImageBitmap(bitmap);
@@ -104,10 +96,7 @@ public class SpotsAddActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.tv_send: // 修改图片
                 // 打开系统文件
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 1);
+                PhotoUtils.startImageActivity(this);
                 break;
             case R.id.tv_edit:  // 保存
                 String code = et_code.getText().toString().trim();

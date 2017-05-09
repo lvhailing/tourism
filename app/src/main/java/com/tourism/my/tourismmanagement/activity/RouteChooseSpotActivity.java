@@ -44,8 +44,9 @@ public class RouteChooseSpotActivity extends Activity implements View.OnClickLis
         lv = (ListView) findViewById(R.id.lv);
 
         tv_add.setOnClickListener(this);
-
         iv_back.setOnClickListener(this);
+
+        routeId = getIntent().getStringExtra("routeId");
 
         initData();
     }

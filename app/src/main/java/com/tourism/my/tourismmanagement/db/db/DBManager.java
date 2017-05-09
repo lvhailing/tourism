@@ -16,7 +16,7 @@ import java.util.List;
 public class DBManager {
 
     public static FinalDb getFinalDB(Context context) {
-        return FinalDb.create(context, "educational_system", true, 2, new FinalDb.DbUpdateListener() {
+        return FinalDb.create(context, "tourism_db", true, 2, new FinalDb.DbUpdateListener() {
 
             @Override
             public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -65,7 +65,7 @@ public class DBManager {
         finalDb.save(user);
     }
 
-    public static User getUserByCount(Context context, String account) {
+    public static User getUserByAcount(Context context, String account) {
         User user;
         FinalDb finalDb = getFinalDB(context);
         List<User> userList = finalDb.findAllByWhere(User.class, " account = '" + account + "'");
@@ -82,7 +82,7 @@ public class DBManager {
         FinalDb finalDb = getFinalDB(context);
         List<User> userList = finalDb.findAll(User.class);
         if (userList != null && userList.size() > 0) {
-             user = userList.get(0);
+            user = userList.get(0);
         } else {
             user = null;
         }
@@ -170,7 +170,7 @@ public class DBManager {
     }
 
     /**
-     * 删除diary
+     * 删除景点
      *
      * @param context
      */
@@ -193,7 +193,7 @@ public class DBManager {
 
     public static List<Spot> getSpotByRouteId(Context context, String routeId) {
         FinalDb finalDb = getFinalDB(context);
-        return finalDb.findAllByWhere(Spot.class, " routeId = '" + routeId + "'  desc");
+        return finalDb.findAllByWhere(Spot.class, " routeId = '" + routeId + "'");
     }
 
     /**
@@ -215,6 +215,26 @@ public class DBManager {
     public static List<Route> getRouteList(Context context) {
         FinalDb finalDb = getFinalDB(context);
         return finalDb.findAll(Route.class);
+    }
+
+    /**
+     * 删除线路
+     *
+     * @param context
+     */
+    public static void delRoute(Context context, Route route) {
+        FinalDb finalDb = getFinalDB(context);
+        finalDb.delete(route);
+    }
+
+    /**
+     * 删除线路 根据id
+     *
+     * @param context
+     */
+    public static void delRouteById(Context context, String routeId) {
+        FinalDb finalDb = getFinalDB(context);
+        finalDb.deleteByWhere(Route.class, " routeId = '" + routeId + "'");
     }
 
     /**

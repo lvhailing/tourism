@@ -75,7 +75,7 @@ public class RouteSpotAdapter extends BaseAdapter {
 
         Options options = new Options();
         options.inJustDecodeBounds = false;
-        options.inSampleSize = 4;
+        options.inSampleSize = 6;
         Bitmap bitmap = BitmapFactory.decodeFile(dataList.get(position).getFilePath(), options);
         holder.iv.setImageBitmap(bitmap);
 

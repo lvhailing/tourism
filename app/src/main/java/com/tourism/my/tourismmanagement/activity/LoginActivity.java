@@ -71,11 +71,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 }
                 // 登录成功去主界面
                 Intent intent0 = new Intent(LoginActivity.this, MainActivity.class);
-                intent0.putExtra("accout",zh);
+                intent0.putExtra("accout", zh);
                 startActivity(intent0);
                 finish();
 
                 SPUtil.save(this, "account", zh);
+                String role = DBManager.getUserByAcount(this, zh).getRole();
+                SPUtil.save(this, "role", role);
+
                 break;
             case R.id.tv_sign: // 去注册界面
                 Intent intent1 = new Intent(LoginActivity.this, SignActivity.class);

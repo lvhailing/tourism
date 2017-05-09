@@ -15,5 +15,6 @@
     <color name="txt_gray">#999999</color>
     <color name="main">#04a915</color>
     <color name="background_color">#F9F9F9</color>
+    <color name="background_color_alpha">#eeF9F9F9</color>
     <color name="dividing">#DDDDDD</color>
 </resources>

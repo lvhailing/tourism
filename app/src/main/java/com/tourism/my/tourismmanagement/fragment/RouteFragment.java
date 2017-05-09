@@ -1,5 +1,7 @@
 package com.tourism.my.tourismmanagement.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,10 +15,11 @@ import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.activity.RouteAddActivity;
-import com.tourism.my.tourismmanagement.activity.SpotsDetailActivity;
+import com.tourism.my.tourismmanagement.activity.RouteDetailActivity;
 import com.tourism.my.tourismmanagement.adapter.RouteAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Route;
+import com.tourism.my.tourismmanagement.utils.SPUtil;
 
 import java.util.List;
 
@@ -46,6 +49,22 @@ public class RouteFragment extends Fragment implements View.OnClickListener {
         tv_no = (TextView) view.findViewById(R.id.tv_no);
         lv = (ListView) view.findViewById(R.id.lv);
 
+        //判断身份 1游客 2管理员
+        String role = SPUtil.get(getActivity(), "role");
+
+        if (role.equals("1")) {
+            tv_add.setVisibility(View.GONE);
+        } else {
+            lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long arg3) {
+                    // 长安删除
+                    dialog(pos);
+                    return true;
+                }
+            });
+        }
+
         tv_add.setOnClickListener(this);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,11 +72,12 @@ public class RouteFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 // 去详情
-                Intent intent = new Intent(context, SpotsDetailActivity.class);
-                intent.putExtra("diary", list.get(arg2));
+                Intent intent = new Intent(context, RouteDetailActivity.class);
+                intent.putExtra("routeDetail", list.get(arg2));
                 startActivity(intent);
             }
         });
+
     }
 
     public void initData() {
@@ -96,5 +116,22 @@ public class RouteFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    protected void dialog(final int pos) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage("确认删除此线路吗？");
+        builder.setTitle("提示");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // 从数据库删除这一项
+                DBManager.delRoute(getActivity(), list.get(pos));
+                // 刷新界面
+                initData();
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("取消", null);
+        builder.create().show();
+    }
 
 }
