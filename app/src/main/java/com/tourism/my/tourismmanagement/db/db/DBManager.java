@@ -138,6 +138,11 @@ public class DBManager {
         return finalDb.findAll(Notes.class, " myorder desc");
     }
 
+    public static List<Notes> getNotesByForum(Context context, long forumId) {
+        FinalDb finalDb = getFinalDB(context);
+        return finalDb.findAllByWhere(Notes.class, " forumId = '" + forumId + "' order by myorder desc");
+    }
+
     /**
      * 删除游记
      *
@@ -148,6 +153,10 @@ public class DBManager {
         finalDb.delete(notes);
     }
 
+    public static void delNotesDetail(Context context, NotesDetail notesDetail) {
+        FinalDb finalDb = getFinalDB(context);
+        finalDb.delete(notesDetail);
+    }
     /**
      * 保存游记里的上传文件
      *

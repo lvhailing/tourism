@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.tourism.my.tourismmanagement.R;
+import com.tourism.my.tourismmanagement.activity.ForgetPwdActivity;
 import com.tourism.my.tourismmanagement.activity.LoginActivity;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.utils.SPUtil;
@@ -22,6 +23,7 @@ import com.tourism.my.tourismmanagement.utils.ToastUtil;
  * 底部导航---我的
  */
 public class MeFragment extends Fragment implements View.OnClickListener {
+    private RelativeLayout rl_change; // 注销
     private RelativeLayout rl_cancellation; // 注销
     private RelativeLayout rl_check; // 检查更新
 
@@ -37,6 +39,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private void initView(View view) {
         rl_cancellation = (RelativeLayout) view.findViewById(R.id.rl_cancellation);
         rl_check = (RelativeLayout) view.findViewById(R.id.rl_check);
+        rl_change = (RelativeLayout) view.findViewById(R.id.rl_change);
+
+        rl_change.setOnClickListener(this);
         rl_cancellation.setOnClickListener(this);
         rl_check.setOnClickListener(this);
 
@@ -48,6 +53,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.rl_cancellation: // 注销
                 dialog();
+                break;
+            case R.id.rl_change: // 检查更新
+                // 去重置密码界面
+                Intent intent = new Intent(getActivity(), ForgetPwdActivity.class);
+                intent.putExtra("acount", SPUtil.get(getActivity(), "account"));
+                startActivity(intent);
                 break;
             case R.id.rl_check: // 检查更新
                 showProgressDialog();
@@ -88,7 +99,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
      * 开启对话框
      */
     private void showProgressDialog() {
-        if (progDialog == null) progDialog = new ProgressDialog(getActivity());
+        if (progDialog == null)
+            progDialog = new ProgressDialog(getActivity());
         progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDialog.setIndeterminate(false);
         progDialog.setCancelable(false);

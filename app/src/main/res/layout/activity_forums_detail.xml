@@ -4,8 +4,7 @@
                 android:layout_height="fill_parent"
                 android:background="@color/bg_gray1"
                 android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="vertical">
+                android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:id="@+id/rl_title"
@@ -23,20 +22,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="游记详情"
+            android:text="主题详情"
             android:textColor="#fff"
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/tv_right"
+            android:id="@+id/tv_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="12dp"
-            android:text="删除"
-            android:textColor="#fcfcfc"
-            android:textSize="16sp"/>
+            android:text="添加游记"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
 
         <View
             android:layout_width="match_parent"
@@ -45,38 +44,33 @@
             android:background="@color/bg_gray"/>
     </RelativeLayout>
 
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/rl_title"
+        android:layout_below="@id/rl_title"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="5dp"
+            android:text="主题："
+            android:textColor="@color/main"
+            android:textSize="18sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/bg_gray"/>
-
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:textColor="@color/text_color_grey"
-                android:textSize="16sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -107,7 +101,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -138,20 +134,40 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
+                android:layout_marginTop="6dp"
                 android:background="@color/main"/>
         </LinearLayout>
 
-        <GridView
-            android:id="@+id/gv"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
             android:layout_marginTop="20dp"
-            android:columnWidth="90dp"
-            android:gravity="center"
-            android:horizontalSpacing="10dp"
-            android:numColumns="3"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="10dp"/>
+            android:paddingLeft="5dp"
+            android:text="相关游记："
+            android:textColor="@color/main"
+            android:textSize="18sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
+
+            <ListView
+                android:id="@+id/lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"/>
+
+            <TextView
+                android:id="@+id/tv_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="暂无游记，快来添加吧"
+                android:textColor="#666"
+                android:textSize="14sp"/>
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout

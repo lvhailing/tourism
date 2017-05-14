@@ -15,10 +15,11 @@ import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
 import com.tourism.my.tourismmanagement.activity.ForumsAddActivity;
+import com.tourism.my.tourismmanagement.activity.ForumsDetailActivity;
 import com.tourism.my.tourismmanagement.adapter.ForumsAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Forums;
-import com.tourism.my.tourismmanagement.widget.MyListView;
+import com.tourism.my.tourismmanagement.utils.SPUtil;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ import java.util.List;
  */
 public class ForumFragment extends Fragment implements View.OnClickListener {
     private View view;
-    private TextView tv_add,tv_no;
+    private TextView tv_add, tv_no;
     private ListView lv;
     private List<Forums> list;
     private ForumsAdapter adapter;
@@ -49,6 +50,16 @@ public class ForumFragment extends Fragment implements View.OnClickListener {
 
         tv_add.setOnClickListener(this);
 
+        //判断身份 1游客 2管理员
+        String role = SPUtil.get(getActivity(), "role");
+
+        if (role.equals("2")) {
+            //2管理员
+            tv_add.setVisibility(View.VISIBLE);
+        } else {
+            tv_add.setVisibility(View.GONE);
+        }
+
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long arg3) {
@@ -57,16 +68,16 @@ public class ForumFragment extends Fragment implements View.OnClickListener {
                 return true;
             }
         });
-       /* lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 // 去详情
-                Intent intent = new Intent(getActivity(), NotesDetailActivity.class);
-                intent.putExtra("notes", list.get(arg2));
+                Intent intent = new Intent(getActivity(), ForumsDetailActivity.class);
+                intent.putExtra("forumDetail", list.get(arg2));
                 startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override
@@ -97,7 +108,7 @@ public class ForumFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_add: //发布
-               Intent intent = new Intent(context, ForumsAddActivity.class);
+                Intent intent = new Intent(context, ForumsAddActivity.class);
                 startActivity(intent);
                 break;
 

@@ -11,18 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
-import com.tourism.my.tourismmanagement.adapter.NotesDeatilAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Forums;
-import com.tourism.my.tourismmanagement.db.db.model.NotesDetail;
 import com.tourism.my.tourismmanagement.utils.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
- *  论坛添加
+ *  主题添加
  */
 public class ForumsAddActivity extends Activity implements View.OnClickListener {
 	private ImageView iv_back;
@@ -107,7 +104,7 @@ public class ForumsAddActivity extends Activity implements View.OnClickListener 
 
 	/**
 	 * 调用此方法输入所要转换的时间戳输入例如（1402733340）输出（"2014年06月14日16时09分"）
-	 * 
+	 *
 	 * @return
 	 */
 	public static String times() {

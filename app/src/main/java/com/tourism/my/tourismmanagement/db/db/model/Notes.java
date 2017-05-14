@@ -7,86 +7,105 @@ import java.io.Serializable;
 
 /**
  * 游记实体类
- * 
  */
 @Table(name = "tb_notes")
-public class Notes implements Serializable{
-	@Id
-	private int _id;
+public class Notes implements Serializable {
+    @Id
+    private int _id;
 
-	private long id;
-	private String time;
-	private String title;
-	private String cotent;
-	private String myorder;
-	private String filePath;
+    private long id;
+    private long forumId;    //主题id  肯和主题绑定
+    private String account;    //编写者账号
+    private String time;
+    private String title;
+    private String cotent;
+    private String myorder;
+    private String filePath;
 
-	public Notes() {
-	}
+    public Notes() {
+    }
 
-	public Notes(long id, String time, String title, String cotent, String myorder, String filePath) {
-		this.id = id;
-		this.time = time;
-		this.filePath = filePath;
-		this.title = title;
-		this.cotent = cotent;
-		this.myorder = myorder;
-	}
+    public Notes(long id, long forumId, String account, String time, String title, String cotent, String myorder, String filePath) {
+        this.id = id;
+        this.forumId = forumId;
+        this.account = account;
+        this.time = time;
+        this.filePath = filePath;
+        this.title = title;
+        this.cotent = cotent;
+        this.myorder = myorder;
+    }
 
-	public int get_id() {
-		return _id;
-	}
+    public int get_id() {
+        return _id;
+    }
 
-	public void set_id(int _id) {
-		this._id = _id;
-	}
+    public void set_id(int _id) {
+        this._id = _id;
+    }
 
-	public String getFilePath() {
-		return filePath;
-	}
+    public String getFilePath() {
+        return filePath;
+    }
 
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
-	
-	public long getId() {
-		return id;
-	}
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getTime() {
-		return time;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setTime(String time) {
-		this.time = time;
-	}
+    public long getForumId() {
+        return forumId;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setForumId(long forumId) {
+        this.forumId = forumId;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getAccount() {
+        return account;
+    }
 
-	public String getCotent() {
-		return cotent;
-	}
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
-	public void setCotent(String cotent) {
-		this.cotent = cotent;
-	}
+    public String getTime() {
+        return time;
+    }
 
-	public String getMyorder() {
-		return myorder;
-	}
+    public void setTime(String time) {
+        this.time = time;
+    }
 
-	public void setMyorder(String myorder) {
-		this.myorder = myorder;
-	}
-	
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCotent() {
+        return cotent;
+    }
+
+    public void setCotent(String cotent) {
+        this.cotent = cotent;
+    }
+
+    public String getMyorder() {
+        return myorder;
+    }
+
+    public void setMyorder(String myorder) {
+        this.myorder = myorder;
+    }
+
 }

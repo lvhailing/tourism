@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,8 +18,8 @@ import com.tourism.my.tourismmanagement.db.db.DBManager;
 import com.tourism.my.tourismmanagement.db.db.model.Notes;
 import com.tourism.my.tourismmanagement.db.db.model.NotesDetail;
 import com.tourism.my.tourismmanagement.utils.PhotoUtils;
+import com.tourism.my.tourismmanagement.utils.SPUtil;
 import com.tourism.my.tourismmanagement.utils.ToastUtil;
-import com.tourism.my.tourismmanagement.widget.MyListView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,8 +31,9 @@ public class NotesAddActivity extends Activity implements View.OnClickListener {
     private TextView tv_send, tv_save;
     private EditText et_title, et_content;
     private ProgressDialog progDialog = null;
-    private MyListView lv;
+    private GridView gridView;
     private long id = 0;
+    private long forumId;
     private NotesDeatilAdapter adapter;
     private List<NotesDetail> list;
 
@@ -45,11 +47,13 @@ public class NotesAddActivity extends Activity implements View.OnClickListener {
         tv_save = (TextView) findViewById(R.id.tv_save);
         et_title = (EditText) findViewById(R.id.et_title);
         et_content = (EditText) findViewById(R.id.et_content);
-        lv = (MyListView) findViewById(R.id.lv);
+        gridView = (GridView) findViewById(R.id.gv);
 
         iv_back.setOnClickListener(this);
         tv_save.setOnClickListener(this);
         tv_send.setOnClickListener(this);
+
+        forumId = getIntent().getLongExtra("forumId", 0);
 
     }
 
@@ -57,8 +61,8 @@ public class NotesAddActivity extends Activity implements View.OnClickListener {
         // 刷新lv
         list = DBManager.getNotesDetailById(this, id);
         if (adapter == null) {
-            adapter = new NotesDeatilAdapter(this, list);
-            lv.setAdapter(adapter);
+            adapter = new NotesDeatilAdapter(this, list, SPUtil.get(this, "account"));
+            gridView.setAdapter(adapter);
         } else {
             adapter.setData(list);
         }
@@ -122,7 +126,7 @@ public class NotesAddActivity extends Activity implements View.OnClickListener {
                 if (list != null && list.size() > 0) {
                     filePath = list.get(0).getFilePath();
                 }
-                DBManager.saveNotes(this, new Notes(id, time, title, content, new Date().getTime() + "", filePath));
+                DBManager.saveNotes(this, new Notes(id, forumId, SPUtil.get(this, "account"), time, title, content, new Date().getTime() + "", filePath));
                 break;
         }
     }
@@ -131,7 +135,8 @@ public class NotesAddActivity extends Activity implements View.OnClickListener {
      * 开启对话框
      */
     private void showProgressDialog() {
-        if (progDialog == null) progDialog = new ProgressDialog(this);
+        if (progDialog == null)
+            progDialog = new ProgressDialog(this);
         progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDialog.setIndeterminate(false);
         progDialog.setCancelable(false);

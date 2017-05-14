@@ -84,7 +84,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         mFragments.add(tab_route);
 
         //判断身份 1游客 2管理员
-        String role = "1";
+        String role = "2";
 
         if (role.equals("1")) {
             result = "游客";

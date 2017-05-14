@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="论坛"
+            android:text="主题"
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
@@ -25,7 +25,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="12dp"
-            android:text="发布"
+            android:text="添加"
             android:textColor="@color/white"
             android:textSize="14sp"/>
     </RelativeLayout>
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="暂无论坛信息，快来发布吧"
+            android:text="暂无主题"
             android:textColor="#666"
             android:textSize="14sp" />
     </RelativeLayout>

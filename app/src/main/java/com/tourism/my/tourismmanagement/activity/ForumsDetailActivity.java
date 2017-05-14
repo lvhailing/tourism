@@ -5,22 +5,23 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.tourism.my.tourismmanagement.R;
-import com.tourism.my.tourismmanagement.adapter.NotesDeatilAdapter;
+import com.tourism.my.tourismmanagement.adapter.NotesAdapter;
 import com.tourism.my.tourismmanagement.db.db.DBManager;
+import com.tourism.my.tourismmanagement.db.db.model.Forums;
 import com.tourism.my.tourismmanagement.db.db.model.Notes;
-import com.tourism.my.tourismmanagement.db.db.model.NotesDetail;
 import com.tourism.my.tourismmanagement.utils.SPUtil;
 import com.tourism.my.tourismmanagement.utils.ToastUtil;
 
@@ -29,82 +30,108 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 游记详情页
+ * 主题详情页
  */
-public class NotesDetailActivity extends Activity implements View.OnClickListener {
+public class ForumsDetailActivity extends Activity implements View.OnClickListener {
     private ImageView iv_back;
     private EditText et_title, et_content;
-    private GridView gridView;
-    private TextView tv_edit, tv_time;
-    private TextView tv_del;
-    private TextView tv_right;
+    private ListView lv;
+    private TextView tv_edit, tv_add, tv_del, tv_no;
     private LinearLayout ll_btm;
 
-    private NotesDeatilAdapter adapter;
-    private Notes notes;
-    private List<NotesDetail> list;
-    private long forumId;
+    private List<Notes> list;
+    private NotesAdapter adapter;
+    private Forums forum;
     private String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notes_detail);
+        setContentView(R.layout.activity_forums_detail);
 
         iv_back = (ImageView) findViewById(R.id.iv_back);
-        et_title = (EditText) findViewById(R.id.et_title);
-        et_content = (EditText) findViewById(R.id.et_content);
-        tv_time = (TextView) findViewById(R.id.tv_time);
-        gridView = (GridView) findViewById(R.id.gv);
-        ll_btm = (LinearLayout) findViewById(R.id.ll_btm);
         tv_edit = (TextView) findViewById(R.id.tv_edit);
         tv_del = (TextView) findViewById(R.id.tv_del);
-        tv_right = (TextView) findViewById(R.id.tv_right);
+        tv_add = (TextView) findViewById(R.id.tv_add);
+        et_title = (EditText) findViewById(R.id.et_title);
+        et_content = (EditText) findViewById(R.id.et_content);
+//        tv_time = (TextView) findViewById(tv_time);
+        lv = (ListView) findViewById(R.id.lv);
+        ll_btm = (LinearLayout) findViewById(R.id.ll_btm);
+        ;
+        tv_no = (TextView) findViewById(R.id.tv_no);
 
         iv_back.setOnClickListener(this);
         tv_edit.setOnClickListener(this);
         tv_del.setOnClickListener(this);
-        tv_right.setOnClickListener(this);
+        tv_add.setOnClickListener(this);
 
-        forumId = getIntent().getLongExtra("forumId", 0);
-        notes = (Notes) getIntent().getSerializableExtra("notes");
+        initData();
+    }
+
+    private void initData() {
+        forum = (Forums) getIntent().getSerializableExtra("forumDetail");
+        et_title.setText(forum.getTitle());
+        et_content.setText(forum.getCotent());
+//        tv_time.setText("创建时间：" + forum.getTime());
 
         //判断身份 1游客 2管理员
         role = SPUtil.get(this, "role");
         if (role.equals("2")) {
             //2管理员
-            tv_right.setVisibility(View.VISIBLE);
-            ll_btm.setVisibility(View.GONE);
-        } else if (notes.getAccount().equals(SPUtil.get(this, "account"))) {
-            //是游客，且是自己
+            tv_no.setText("暂无游记");
+            tv_add.setVisibility(View.GONE);
             ll_btm.setVisibility(View.VISIBLE);
-            tv_right.setVisibility(View.GONE);
+            lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long arg3) {
+                    // 长安删除
+                    dialog(pos);
+                    return true;
+                }
+            });
         } else {
-            //是游客，不是自己的游记
+            tv_add.setVisibility(View.VISIBLE);
             ll_btm.setVisibility(View.GONE);
-            tv_right.setVisibility(View.GONE);
         }
 
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                // 去详情
+                Intent intent = new Intent(ForumsDetailActivity.this, NotesDetailActivity.class);
+                intent.putExtra("notes", list.get(arg2));
+                intent.putExtra("forumId",forum.getId());
+                startActivity(intent);
+            }
+        });
+
+        // 刷新lv
         initLv();
     }
 
     private void initLv() {
-        if (notes == null) {
-            ToastUtil.showToast(this, "出现错误");
+        list = DBManager.getNotesByForum(this, forum.getId());
+        if (list == null || list.size() <= 0) {
+            tv_no.setVisibility(View.VISIBLE);
+            lv.setVisibility(View.GONE);
             return;
         }
-        et_title.setText(notes.getTitle());
-        et_content.setText(notes.getCotent());
-        tv_time.setText("创建时间：" + notes.getTime());
-
-        // 刷新lv
-        list = DBManager.getNotesDetailById(this, notes.getId());
+        tv_no.setVisibility(View.GONE);
+        lv.setVisibility(View.VISIBLE);
         if (adapter == null) {
-            adapter = new NotesDeatilAdapter(this, list,notes.getAccount());
-            gridView.setAdapter(adapter);
+            adapter = new NotesAdapter(this, list);
+            lv.setAdapter(adapter);
         } else {
             adapter.setData(list);
         }
+    }
+
+    @Override
+    public void onResume() {
+        initLv();
+        super.onResume();
     }
 
     @SuppressLint("NewApi")
@@ -114,11 +141,15 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.tv_right:   //删除游记
-            case R.id.tv_del:   //删除游记
-                dialog();
+            case R.id.tv_del:   //删除此主题
+                dialog2();
                 break;
-            case R.id.tv_edit:   //编辑游记
+            case R.id.tv_add:   //添加游记
+                Intent intent = new Intent(this, NotesAddActivity.class);
+                intent.putExtra("forumId",forum.getId());
+                startActivity(intent);
+                break;
+            case R.id.tv_edit:
                 String name = tv_edit.getText().toString();
                 if (name.equals("编辑")) {
                     tv_edit.setText("保存");
@@ -128,38 +159,30 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
 //				et_content.setText("");
                     et_title.setEnabled(true);
                     et_content.setEnabled(true);
-
-                    gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                        @Override
-                        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                            dialog2(position);
-                            return false;
-                        }
-                    });
                     return;
                 }
                 String title = et_title.getText().toString().trim();
                 String content = et_content.getText().toString().trim();
                 if (TextUtils.isEmpty(title)) {
-                    ToastUtil.showToast(NotesDetailActivity.this, "请输入标题");
+                    ToastUtil.showToast(ForumsDetailActivity.this, "请输入标题");
                     return;
                 } else if (TextUtils.isEmpty(content)) {
-                    ToastUtil.showToast(NotesDetailActivity.this, "请输入内容");
+                    ToastUtil.showToast(ForumsDetailActivity.this, "请输入内容");
                     return;
                 }
                 showProgressDialog();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.showToast(NotesDetailActivity.this, "保存成功");
+                        ToastUtil.showToast(ForumsDetailActivity.this, "保存成功");
                         dissmissProgressDialog();
                         finish();
                     }
                 }, 1500);
                 // 保存到数据库
                 String time = times();
-                DBManager.delNotes(this, notes); // 先删除原先的 防止重复
-                DBManager.saveNotes(this, new Notes(notes.getId(), forumId, SPUtil.get(this, "account"), time, title, content, new Date().getTime() + "", notes.getFilePath()));
+                DBManager.delForums(this, forum); // 先删除原先的 防止重复
+                DBManager.saveForums(this, new Forums(forum.getId(), time, title, content, new Date().getTime() + ""));
                 break;
         }
     }
@@ -199,7 +222,7 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
         return times;
     }
 
-    protected void dialog() {
+    protected void dialog(final int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("确认删除这篇游记记吗？");
         builder.setTitle("提示");
@@ -207,33 +230,27 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // 从数据库删除这一项
-                DBManager.delNotes(NotesDetailActivity.this, notes);
+                DBManager.delNotes(ForumsDetailActivity.this, list.get(pos));
+                // 刷新界面
+                initData();
                 dialog.dismiss();
-                finish();
             }
         });
         builder.setNegativeButton("取消", null);
         builder.create().show();
     }
 
-    protected void dialog2(final int pos) {
+    protected void dialog2() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("确认删除这张照片吗？");
+        builder.setMessage("确认删除这个主题吗？");
         builder.setTitle("提示");
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // 从数据库删除这一项
-                DBManager.delNotesDetail(NotesDetailActivity.this, list.get(pos));
+                DBManager.delForums(ForumsDetailActivity.this, forum);
                 dialog.dismiss();
-                // 刷新lv
-                list = DBManager.getNotesDetailById(NotesDetailActivity.this, notes.getId());
-                if (adapter == null) {
-                    adapter = new NotesDeatilAdapter(NotesDetailActivity.this, list, notes.getAccount());
-                    gridView.setAdapter(adapter);
-                } else {
-                    adapter.setData(list);
-                }
+                finish();
             }
         });
         builder.setNegativeButton("取消", null);

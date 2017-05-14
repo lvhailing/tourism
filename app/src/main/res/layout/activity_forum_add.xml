@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="论坛添加"
+            android:text="主题添加"
             android:textColor="#fff"
             android:textSize="20sp" />
 
