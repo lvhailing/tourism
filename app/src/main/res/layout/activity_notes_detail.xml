@@ -63,15 +63,34 @@
                 android:layout_height="0.5dp"
                 android:background="@color/bg_gray"/>
 
-            <TextView
-                android:id="@+id/tv_time"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="5dp"
-                android:textColor="@color/text_color_grey"
-                android:textSize="16sp"/>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:ellipsize="end"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text="创建人：张三"
+                    android:textColor="@color/txt_gray"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="创建时间：2017-12-10"
+                    android:textColor="@color/txt_gray"
+                    android:textSize="14sp"/>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

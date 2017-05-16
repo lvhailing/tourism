@@ -35,7 +35,7 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
     private ImageView iv_back;
     private EditText et_title, et_content;
     private GridView gridView;
-    private TextView tv_edit, tv_time;
+    private TextView tv_edit, tv_time, tv_name;
     private TextView tv_del;
     private TextView tv_right;
     private LinearLayout ll_btm;
@@ -55,6 +55,7 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
         et_title = (EditText) findViewById(R.id.et_title);
         et_content = (EditText) findViewById(R.id.et_content);
         tv_time = (TextView) findViewById(R.id.tv_time);
+        tv_name = (TextView) findViewById(R.id.tv_name);
         gridView = (GridView) findViewById(R.id.gv);
         ll_btm = (LinearLayout) findViewById(R.id.ll_btm);
         tv_edit = (TextView) findViewById(R.id.tv_edit);
@@ -95,12 +96,13 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
         }
         et_title.setText(notes.getTitle());
         et_content.setText(notes.getCotent());
-        tv_time.setText("创建时间：" + notes.getTime());
+        tv_time.setText(notes.getTime().substring(5));
+        tv_name.setText("创建人：" + notes.getAccount());
 
         // 刷新lv
         list = DBManager.getNotesDetailById(this, notes.getId());
         if (adapter == null) {
-            adapter = new NotesDeatilAdapter(this, list,notes.getAccount());
+            adapter = new NotesDeatilAdapter(this, list, notes.getAccount());
             gridView.setAdapter(adapter);
         } else {
             adapter.setData(list);
@@ -170,8 +172,7 @@ public class NotesDetailActivity extends Activity implements View.OnClickListene
      * 开启对话框
      */
     private void showProgressDialog() {
-        if (progDialog == null)
-            progDialog = new ProgressDialog(this);
+        if (progDialog == null) progDialog = new ProgressDialog(this);
         progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progDialog.setIndeterminate(false);
         progDialog.setCancelable(false);

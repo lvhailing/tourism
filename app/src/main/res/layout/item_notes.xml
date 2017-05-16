@@ -57,10 +57,22 @@
                 android:textSize="15sp"/>
 
             <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="创建人：张三"
+                android:textColor="@color/txt_gray"
+                android:textSize="12sp"/>
+
+            <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="创建时间：2017-12-10"
